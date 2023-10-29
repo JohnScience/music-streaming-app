@@ -1,8 +1,9 @@
-# React + Vite
+# Фронтенд для музыкального сервиса
 
-This template provides a minimal setup to get React working in Vite with HMR and some ESLint rules.
+## Сборка с помощью Docker
 
-Currently, two official plugins are available:
+```console
+docker build -t music-service-front . && docker create --name music-service-front music-service-front sleep infinity && docker export music-service-front > music-service-front.tar
+```
 
-- [@vitejs/plugin-react](https://github.com/vitejs/vite-plugin-react/blob/main/packages/plugin-react/README.md) uses [Babel](https://babeljs.io/) for Fast Refresh
-- [@vitejs/plugin-react-swc](https://github.com/vitejs/vite-plugin-react-swc) uses [SWC](https://swc.rs/) for Fast Refresh
+На выходе у вас должен получиться `.tar` архив. Внутри него по пути `/dist` будет находиться собранный фронтенд.
