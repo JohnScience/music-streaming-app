@@ -5,13 +5,12 @@ jobs:
   check-frontend-build:
     runs-on: ubuntu-latest
     steps:
+      - uses: actions/checkout@v4
       - uses: docker-practice/actions-setup-docker@master
         timeout-minutes: 12
       # https://www.educative.io/answers/bash--x-and-set--x
       - run: |
           set -x
           docker version
-          ls
-          ls ..
           cd front
           docker build .
