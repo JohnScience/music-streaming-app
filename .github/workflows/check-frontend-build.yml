@@ -6,7 +6,7 @@ jobs:
     runs-on: ubuntu-latest
     defaults:
       run:
-        working-directory: ./front
+        working-directory: front
     steps:
       - uses: docker-practice/actions-setup-docker@master
         timeout-minutes: 12
