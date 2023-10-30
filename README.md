@@ -10,6 +10,8 @@
 3. Удостоверьтесь, что у вас установлен [`node.js`](https://nodejs.org/en/download/). Вместе с ним должен быть установлен `npm`.
 4. Исполните команду `cd music-streaming-app/front && npm i && cd ../back && npm i && cd ..`.
 
+После этого, вы можете следовать инструкциям в `front/README.md` и `back/README.md`.
+
 ## Создание Docker-образа
 
 1. Удостоверьтесь, что у вас установлен [`docker`](https://docs.docker.com/get-docker/).
@@ -22,7 +24,7 @@ docker build -f Dockerfile.webapp -t music-streaming-webapp .
 
 Это создаст Docker-образ с именем `music-streaming-webapp`.
 
-## Запуск Docker-образа
+## Запуск Docker-образа (В detached режиме)
 
 1. Удостоверьтесь, что вы создали Docker-образ `music-streaming-webapp` (см. предыдущий раздел).
 
@@ -38,4 +40,14 @@ docker run --name music-streaming-webapp -p 8000:3000 -d music-streaming-webapp
 docker kill music-streaming-webapp
 ```
 
-После этого, вы можете следовать инструкциям в `front/README.md` и `back/README.md`.
+## Запуск Docker-образа (В foreground режиме)
+
+1. Удостоверьтесь, что вы создали Docker-образ `music-streaming-webapp`.
+
+2. В директории с проектом запустите следующую команду:
+
+```console
+docker run --name music-streaming-webapp -p 8000:3000 -t -i --rm music-streaming-webapp
+```
+
+После остановки с помощью `Ctrl+C`, благодаря флагу `--rm`, контейнер будет удалён.
