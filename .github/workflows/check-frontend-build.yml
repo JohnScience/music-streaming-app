@@ -1,0 +1,17 @@
+name: check-frontend-build
+run-name: ${{ github.actor }} is checking if frontend can be built
+on: [workflow_dispatch]
+jobs:
+  check-frontend-build:
+    runs-on: ubuntu-latest
+    defaults:
+      run:
+        working-directory: ./front
+    steps:
+      - uses: docker-practice/actions-setup-docker@master
+        timeout-minutes: 12
+      - run: |
+          # https://www.educative.io/answers/bash--x-and-set--x
+          set -x
+          docker version
+          docker build
