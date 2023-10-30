@@ -10,8 +10,8 @@ jobs:
     steps:
       - uses: docker-practice/actions-setup-docker@master
         timeout-minutes: 12
+      # https://www.educative.io/answers/bash--x-and-set--x
       - run: |
-          # https://www.educative.io/answers/bash--x-and-set--x
           set -x
           docker version
           docker build
