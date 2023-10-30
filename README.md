@@ -8,7 +8,15 @@
 1. Удостоверьтесь, что у вас установлен [`git`](https://git-scm.com/).
 2. В директории, в которой вы хотите разместить директорию с проектом, выполните команду `git clone --depth 1 https://github.com/JohnScience/music-streaming-app`.
 3. Удостоверьтесь, что у вас установлен [`node.js`](https://nodejs.org/en/download/). Вместе с ним должен быть установлен `npm`.
-4. Исполните команду `cd music-streaming-app/front && npm i && cd ../back && npm i && cd ..`.
+4. Исполните команду `cd music-streaming-app/front && npm i && cd ../back && npm i && cd ..`. В случае ошибки `Лексема "&&" не является допустимым разделителем операторов в эой версии`, пишите команды разделённые `&&` поочерёдно, то есть
+
+```console
+cd music-streaming-app/front
+npm i
+cd ../back
+npm i
+cd ..
+```
 
 После этого, вы можете следовать инструкциям в `front/README.md` и `back/README.md`.
 
