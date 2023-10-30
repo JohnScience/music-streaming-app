@@ -20,7 +20,7 @@ npm run lint
 
 ```console
 git add .
-git commit -m "<feat|fix|docs|refactor|style|test:>"
+git commit -m "<feat|fix|docs|refactor|style|test>: Your commit message here"
 git pull
 git push
 ```
