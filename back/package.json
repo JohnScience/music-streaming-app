@@ -3,7 +3,8 @@
   "version": "0.0.0",
   "private": true,
   "scripts": {
-    "dev": "(mkdir public || echo \"Already exists\") && cd ../front && npm run build4back && cd ../back && npm run start",
+    "dev": "npm run build && npm run start",
+    "build": "(mkdir public || echo \"Already exists\") && cd ../front && npm run build4back && cd ../back",
     "start": "node ./bin/www"
   },
   "dependencies": {

@@ -1,0 +1,31 @@
+FROM node:21-alpine3.17 as build
+
+RUN mkdir -p /app/front
+RUN mkdir -p /app/back
+
+WORKDIR /app/front
+
+COPY ./front/package.json ./
+COPY ./front/package-lock.json ./
+
+RUN npm install
+
+COPY ./front/public/ ./public
+COPY ./front/src/ ./src
+COPY ./front/index.html ./
+COPY ./front/vite.config.js ./
+
+WORKDIR /app/back
+
+COPY ./back/package.json ./
+COPY ./back/package-lock.json ./
+
+RUN npm install
+
+COPY ./back/bin/ ./bin
+COPY ./back/routes/ ./routes
+COPY ./back/app.js ./
+
+RUN npm run build
+
+ENTRYPOINT npm run start
