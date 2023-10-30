@@ -12,5 +12,6 @@ jobs:
           set -x
           docker version
           ls
+          ls ..
           cd front
           docker build .
