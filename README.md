@@ -16,3 +16,21 @@ git clone --depth 1 https://github.com/JohnScience/music-streaming-app
 ```
 
 В директории, в которую вы хотите установить директорию с проектом с помощью [git](https://git-scm.com/downloads).
+
+## Запуск
+
+1. Убедитесь, что у вас установлен Docker на вашей машине. Если нет, вы можете скачать его с [официального сайта Docker](https://www.docker.com/products/docker-desktop).
+
+2. Перейдите в корневую директорию проекта 
+
+```
+cd music-streaming-app 
+``` 
+
+3. Для запуска docker контейнера введите комманду 
+
+``` 
+docker-compose up 
+```
+
+
