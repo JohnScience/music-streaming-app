@@ -1,15 +1,20 @@
 package com.music_streaming_app.entity;
 
 import jakarta.persistence.*;
-import lombok.Data;
+import lombok.*;
 
 import java.sql.Blob;
 import java.time.LocalDateTime;
 import java.util.UUID;
 
-@Data
+@AllArgsConstructor
+@NoArgsConstructor
+@Getter
+@Setter
 @Entity
-@Table(name = "audio_recordings")
+@ToString
+@EqualsAndHashCode
+@Table(name = "audio_recordings", schema = "audio_recordings")
 public class AudioRecording {
 
     @Id
@@ -27,9 +32,10 @@ public class AudioRecording {
     @Column(name = "description")
     private String description;
 
-    @Column(name = "sourceUrl", nullable = false)
+    @Column(name = "source_url", nullable = false)
     private String sourceUrl;
 
-    @Column(name = "createdAt", nullable = false)
+    @Column(name = "created_at", nullable = false)
     private LocalDateTime createdAt;
 }
+
