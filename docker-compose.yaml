@@ -5,6 +5,8 @@ services:
     build: ./back
     ports:
       - "8081:8080"
+    depends_on:
+      - postgres
   postgres:
     container_name: postgres
     image: postgres
