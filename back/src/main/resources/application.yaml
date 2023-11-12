@@ -1,12 +1,13 @@
 spring:
   datasource:
-    url: jdbc:postgresql://localhost:5431/audio_service_db
+    url: jdbc:postgresql://localhost:5431/audio_service_db?currentSchema=audio_recordings
     username: user
     password: qUu-MAX-7eU-PSW
   jpa:
     hibernate:
       ddl-auto: update
     properties:
+      default-schema: audio_recordings
       hibernate:
         dialect: org.hibernate.dialect.PostgreSQLDialect
     show-sql: true
