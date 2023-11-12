@@ -1,0 +1,13 @@
+version: '3'
+services:
+  db:
+    image: postgres
+    restart: always
+    environment:
+      POSTGRES_USER: user
+      POSTGRES_PASSWORD: qUu-MAX-7eU-PSW
+      POSTGRES_DB: audio_service_db
+    ports:
+      - "5431:5432"
+    volumes:
+      - ./data:/var/lib/postgresql/data
