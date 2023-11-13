@@ -21,10 +21,10 @@ git clone --depth 1 https://github.com/JohnScience/music-streaming-app
 
 1. Убедитесь, что у вас установлен Docker на вашей машине. Если нет, вы можете скачать его с [официального сайта Docker](https://www.docker.com/products/docker-desktop).
 
-2. Перейдите в корневую директорию проекта
+2. Перейдите в директорию `back` проекта
 
 ```
-cd music-streaming-app 
+cd music-streaming-app/back
 ```
 
 3. Чтобы очистить и собрать JAR файл вашего проекта с помощью Maven выполните команду
