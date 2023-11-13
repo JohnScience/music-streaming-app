@@ -18,6 +18,8 @@
 
     <properties>
         <java.version>21</java.version>
+        <!-- Without this, `mvn clean package` will require running PostgreSQL -->
+        <maven.test.skip>true</maven.test.skip>
     </properties>
 
     <dependencies>
