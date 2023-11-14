@@ -2,29 +2,24 @@ package com.music_streaming_app.entity;
 
 import jakarta.persistence.*;
 import lombok.*;
+import org.hibernate.annotations.CreationTimestamp;
 
 import java.sql.Blob;
 import java.time.LocalDateTime;
-import java.util.UUID;
 
-@AllArgsConstructor
-@NoArgsConstructor
-@Getter
-@Setter
+@Data
 @Entity
-@ToString
-@EqualsAndHashCode
-@Table(name = "audio_recordings", schema = "audio_recordings")
-public class EntityAudioRecording {
+@Table(name = "audio_recordings")
+public class AudioRecording {
 
     @Id
     @Column(name = "id")
-    @GeneratedValue(strategy = GenerationType.UUID)
-    private UUID id;
+    @GeneratedValue(strategy = GenerationType.SEQUENCE)
+    private Long id;
 
     @Lob
     @Column(name = "audio_blob", nullable = false)
-    private byte[] audioBlob;
+    private Blob audioBlob;
 
     @Column(name = "author", nullable = false)
     private String author;
@@ -35,7 +30,7 @@ public class EntityAudioRecording {
     @Column(name = "source_url", nullable = false)
     private String sourceUrl;
 
+    @CreationTimestamp
     @Column(name = "created_at", nullable = false)
     private LocalDateTime createdAt;
 }
-
