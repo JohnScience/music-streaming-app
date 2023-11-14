@@ -12,8 +12,10 @@ import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
 import org.springframework.web.servlet.mvc.method.annotation.StreamingResponseBody;
 
+import java.sql.Blob;
 import java.util.ArrayList;
 import java.util.List;
+import java.util.Optional;
 import java.util.UUID;
 
 @RestController
@@ -40,27 +42,35 @@ public class AudioRecordingController {
 
     // Получаем файл в виде потока
     @GetMapping("/audio/{id}")
-    public ResponseEntity<StreamingResponseBody> getAudioRecording(@PathVariable UUID id) {
+    public ResponseEntity<StreamingResponseBody> getAudioRecording(@PathVariable Long id) {
 
         // Получаем файловые данные из сервиса
-        byte[] fileBytes = serviceAudioRecordings.getAudioRecordingById(id).getAudioBlob();
+        Optional<EntityAudioRecording> audioRecordingOptional = serviceAudioRecordings.getAudioRecordingById(id);
 
-        // Создаем объект StreamingResponseBody для потоковой передачи данных
-        StreamingResponseBody responseBody = outputStream -> {
-            // Записываем файловые данные в выходной поток
-            outputStream.write(fileBytes);
-            outputStream.flush();
-        };
+        if (audioRecordingOptional.isPresent()) {
+            EntityAudioRecording audioRecording = audioRecordingOptional.get();
+            byte[] fileBytes = audioRecording.getAudioBlob();
 
-        // Устанавливаем заголовки ответа для указания типа контента и длины файла
-        HttpHeaders headers = new HttpHeaders();
-        headers.setContentType(MediaType.APPLICATION_OCTET_STREAM);
-        headers.setContentLength(fileBytes.length);
+            // Создаем объект StreamingResponseBody для потоковой передачи данных
+            StreamingResponseBody responseBody = outputStream -> {
+                // Записываем файловые данные в выходной поток
+                outputStream.write(fileBytes);
+                outputStream.flush();
+            };
 
-        // Вернем StreamingResponseBody в ответе
-        return ResponseEntity.ok()
-                .headers(headers)
-                .body(responseBody);
+            // Устанавливаем заголовки ответа для указания типа контента и длины файла
+            HttpHeaders headers = new HttpHeaders();
+            headers.setContentType(MediaType.APPLICATION_OCTET_STREAM);
+            headers.setContentLength(fileBytes.length);
+
+            // Возвращаем StreamingResponseBody в ответе
+            return ResponseEntity.ok()
+                    .headers(headers)
+                    .body(responseBody);
+        } else {
+            // Обрабатываем случай, когда аудиозапись не найдена
+            return ResponseEntity.notFound().build();
+        }
     }
 
     // Получаем все записи из БД

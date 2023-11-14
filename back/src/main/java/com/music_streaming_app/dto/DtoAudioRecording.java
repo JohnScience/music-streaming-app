@@ -13,7 +13,7 @@ import java.util.UUID;
 
 @Data
 public class DtoAudioRecording {
-    private UUID id;
+    private Long id;
     private MultipartFile file;
     private String author;
     private String description;

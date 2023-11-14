@@ -10,7 +10,7 @@ import org.springframework.transaction.annotation.Transactional;
 import java.io.IOException;
 import java.time.LocalDateTime;
 import java.util.List;
-import java.util.UUID;
+import java.util.Optional;
 
 @Service
 public class ServiceAudioRecordings implements ServiceAudioRecordingsImpl {
@@ -26,8 +26,8 @@ public class ServiceAudioRecordings implements ServiceAudioRecordingsImpl {
     }
 
     @Override
-    public EntityAudioRecording getAudioRecordingById(UUID id) {
-        return repositoryAudioRecordings.getReferenceById(id);
+    public Optional<EntityAudioRecording> getAudioRecordingById(Long id) {
+        return Optional.of(repositoryAudioRecordings.getReferenceById(id));
     }
 
     @Override
