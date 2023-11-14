@@ -15,7 +15,7 @@ import java.util.UUID;
 @ToString
 @EqualsAndHashCode
 @Table(name = "audio_recordings", schema = "audio_recordings")
-public class AudioRecording {
+public class EntityAudioRecording {
 
     @Id
     @Column(name = "id")
@@ -24,7 +24,7 @@ public class AudioRecording {
 
     @Lob
     @Column(name = "audio_blob", nullable = false)
-    private Blob audioBlob;
+    private byte[] audioBlob;
 
     @Column(name = "author", nullable = false)
     private String author;
