@@ -1,15 +1,11 @@
 version: '3'
 services:
-  back:
-    container_name: back
-    build: ./back
-    ports:
-      - "8081:8080"
-    depends_on:
-      - postgres
   postgres:
     container_name: postgres
     image: postgres
+    volumes:
+      - ./data:/var/lib/postgresql/dat
+      - ./docker-entrypoint-initdb.d/init.sql:/docker-entrypoint-initdb.d/init.sql
     restart: always
     environment:
       POSTGRES_USER: user
@@ -17,5 +13,10 @@ services:
       POSTGRES_DB: audio_service_db
     ports:
       - "5431:5432"
-    volumes:
-      - ./data:/var/lib/postgresql/data
+  back:
+    container_name: back
+    build: ./back
+    ports:
+      - "8081:8080"
+    depends_on:
+      - postgres
