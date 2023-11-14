@@ -1,4 +1,8 @@
 spring:
+  servlet:
+    multipart:
+      max-file-size: 2MB
+      max-request-size: 10MB
   datasource:
     url: jdbc:postgresql://localhost:5431/audio_service_db?currentSchema=audio_recordings
     username: user
