@@ -4,6 +4,7 @@ import com.music_streaming_app.dto.DtoAudioRecording;
 import com.music_streaming_app.entity.EntityAudioRecording;
 import com.music_streaming_app.reposytory.RepositoryAudioRecordings;
 import com.music_streaming_app.service.ServiceAudioRecordings;
+import lombok.RequiredArgsConstructor;
 import org.springframework.stereotype.Service;
 import org.springframework.transaction.annotation.Transactional;
 
@@ -15,12 +16,11 @@ import java.util.List;
 import java.util.Optional;
 
 @Service
+@RequiredArgsConstructor
+@Transactional(readOnly = true)
 public class ServiceAudioRecordingsImpl implements ServiceAudioRecordings {
-    private final RepositoryAudioRecordings repositoryAudioRecordings;
 
-    public ServiceAudioRecordingsImpl(RepositoryAudioRecordings repositoryAudioRecordings) {
-        this.repositoryAudioRecordings = repositoryAudioRecordings;
-    }
+    private final RepositoryAudioRecordings repositoryAudioRecordings;
 
     @Override
     public List<EntityAudioRecording> getAllAudioRecordings() {
