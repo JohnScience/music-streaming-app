@@ -2,7 +2,7 @@ package com.music_streaming_app.controller;
 
 import com.music_streaming_app.dto.DtoAudioRecording;
 import com.music_streaming_app.entity.EntityAudioRecording;
-import com.music_streaming_app.service.ServiceAudioRecordings;
+import com.music_streaming_app.service.impl.ServiceAudioRecordingsImpl;
 import org.springframework.http.HttpHeaders;
 import org.springframework.http.MediaType;
 import org.springframework.http.ResponseEntity;
@@ -19,17 +19,17 @@ import java.sql.SQLException;
 import java.util.ArrayList;
 import java.util.List;
 import java.util.Optional;
-import java.util.UUID;
 
 @RestController
 @RequestMapping("/audio_recordings")
 public class AudioRecordingController {
 
     private static final Logger logger = LoggerFactory.getLogger(AudioRecordingController.class);
-    private final ServiceAudioRecordings serviceAudioRecordings;
 
-    public AudioRecordingController(ServiceAudioRecordings serviceAudioRecordings) {
-        this.serviceAudioRecordings = serviceAudioRecordings;
+    private final ServiceAudioRecordingsImpl serviceAudioRecordingsImpl;
+
+    public AudioRecordingController(ServiceAudioRecordingsImpl serviceAudioRecordingsImpl) {
+        this.serviceAudioRecordingsImpl = serviceAudioRecordingsImpl;
     }
 
     // Запись данных в БД
@@ -37,7 +37,7 @@ public class AudioRecordingController {
     public ResponseEntity<String> createAudioRecording(@ModelAttribute DtoAudioRecording dtoAudioRecording) {
 
         logger.info("Post dto: " + dtoAudioRecording.toString());
-        boolean saveInDateBase = serviceAudioRecordings.saveAudioRecording(dtoAudioRecording);
+        boolean saveInDateBase = serviceAudioRecordingsImpl.saveAudioRecording(dtoAudioRecording);
 
         return ResponseEntity.ok("Audio recording " + saveInDateBase);
     }
@@ -48,7 +48,7 @@ public class AudioRecordingController {
     public ResponseEntity<StreamingResponseBody> getAudioRecording(@PathVariable Long id) {
 
         // Получаем файловые данные из сервиса
-        Optional<EntityAudioRecording> audioRecordingOptional = serviceAudioRecordings.getAudioRecordingById(id);
+        Optional<EntityAudioRecording> audioRecordingOptional = serviceAudioRecordingsImpl.getAudioRecordingById(id);
 
         if (audioRecordingOptional.isPresent()) {
             EntityAudioRecording audioRecording = audioRecordingOptional.get();
@@ -93,7 +93,7 @@ public class AudioRecordingController {
     @GetMapping("/allAudio")
     public ResponseEntity<List<DtoAudioRecording>> getAllAudioRecordings() {
 
-        List<EntityAudioRecording> allAudioRecordings = serviceAudioRecordings.getAllAudioRecordings();
+        List<EntityAudioRecording> allAudioRecordings = serviceAudioRecordingsImpl.getAllAudioRecordings();
 
         List<DtoAudioRecording> dtoAudioRecordings = new ArrayList<>();
 
