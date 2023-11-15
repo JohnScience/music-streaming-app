@@ -12,7 +12,10 @@ import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
 import org.springframework.web.servlet.mvc.method.annotation.StreamingResponseBody;
 
+import java.io.IOException;
+import java.io.InputStream;
 import java.sql.Blob;
+import java.sql.SQLException;
 import java.util.ArrayList;
 import java.util.List;
 import java.util.Optional;
@@ -49,19 +52,32 @@ public class AudioRecordingController {
 
         if (audioRecordingOptional.isPresent()) {
             EntityAudioRecording audioRecording = audioRecordingOptional.get();
-            byte[] fileBytes = audioRecording.getAudioBlob();
+            Blob fileBytes = audioRecording.getAudioBlob();
 
             // Создаем объект StreamingResponseBody для потоковой передачи данных
             StreamingResponseBody responseBody = outputStream -> {
-                // Записываем файловые данные в выходной поток
-                outputStream.write(fileBytes);
-                outputStream.flush();
+                // Получаем поток байтов из объекта Blob
+                try (InputStream inputStream = fileBytes.getBinaryStream()) {
+                    byte[] buffer = new byte[4096];
+                    int bytesRead;
+                    while ((bytesRead = inputStream.read(buffer)) != -1) {
+                        // Записываем байты в выходной поток
+                        outputStream.write(buffer, 0, bytesRead);
+                    }
+                    outputStream.flush();
+                } catch (SQLException | IOException e) {
+                    throw new RuntimeException(e);
+                }
             };
 
             // Устанавливаем заголовки ответа для указания типа контента и длины файла
             HttpHeaders headers = new HttpHeaders();
             headers.setContentType(MediaType.APPLICATION_OCTET_STREAM);
-            headers.setContentLength(fileBytes.length);
+            try {
+                headers.setContentLength((int) fileBytes.length());
+            } catch (SQLException e) {
+                throw new RuntimeException(e);
+            }
 
             // Возвращаем StreamingResponseBody в ответе
             return ResponseEntity.ok()

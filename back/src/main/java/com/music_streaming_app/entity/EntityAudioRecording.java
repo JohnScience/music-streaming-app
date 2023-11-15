@@ -4,6 +4,7 @@ import jakarta.persistence.*;
 import lombok.*;
 import org.hibernate.annotations.CreationTimestamp;
 
+import java.sql.Blob;
 import java.time.LocalDateTime;
 
 @Data
@@ -18,7 +19,7 @@ public class EntityAudioRecording {
 
     @Lob
     @Column(name = "audio_blob", nullable = false)
-    private byte[] audioBlob;
+    private Blob audioBlob;
 
     @Column(name = "author", nullable = false)
     private String author;

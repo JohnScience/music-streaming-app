@@ -7,7 +7,10 @@ import com.music_streaming_app.service.impl.ServiceAudioRecordingsImpl;
 import org.springframework.stereotype.Service;
 import org.springframework.transaction.annotation.Transactional;
 
+import javax.sql.rowset.serial.SerialBlob;
+import javax.sql.rowset.serial.SerialException;
 import java.io.IOException;
+import java.sql.SQLException;
 import java.time.LocalDateTime;
 import java.util.List;
 import java.util.Optional;
@@ -37,8 +40,8 @@ public class ServiceAudioRecordings implements ServiceAudioRecordingsImpl {
         EntityAudioRecording entityAudioRecording = new EntityAudioRecording();
 
         try {
-            entityAudioRecording.setAudioBlob(audioRecording.getFile().getBytes());
-        } catch (IOException e) {
+            entityAudioRecording.setAudioBlob(new SerialBlob(audioRecording.getFile().getBytes()));
+        } catch (IOException | SQLException e) {
             throw new RuntimeException(e);
         }
 
