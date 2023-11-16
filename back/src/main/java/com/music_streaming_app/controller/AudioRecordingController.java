@@ -3,6 +3,7 @@ package com.music_streaming_app.controller;
 import com.music_streaming_app.dto.DtoAudioRecording;
 import com.music_streaming_app.entity.EntityAudioRecording;
 import com.music_streaming_app.service.impl.ServiceAudioRecordingsImpl;
+import lombok.RequiredArgsConstructor;
 import org.springframework.http.HttpHeaders;
 import org.springframework.http.MediaType;
 import org.springframework.http.ResponseEntity;
@@ -21,20 +22,17 @@ import java.util.List;
 import java.util.Optional;
 
 @RestController
-@RequestMapping("/audio_recordings")
+@RequiredArgsConstructor
+@RequestMapping("api/v1/audio_recording")
 public class AudioRecordingController {
 
     private static final Logger logger = LoggerFactory.getLogger(AudioRecordingController.class);
 
     private final ServiceAudioRecordingsImpl serviceAudioRecordingsImpl;
 
-    public AudioRecordingController(ServiceAudioRecordingsImpl serviceAudioRecordingsImpl) {
-        this.serviceAudioRecordingsImpl = serviceAudioRecordingsImpl;
-    }
-
     // Запись данных в БД
-    @PostMapping(consumes = MediaType.MULTIPART_FORM_DATA_VALUE)
-    public ResponseEntity<String> createAudioRecording(@ModelAttribute DtoAudioRecording dtoAudioRecording) {
+    @PostMapping(value = "/save", consumes = MediaType.MULTIPART_FORM_DATA_VALUE)
+    public ResponseEntity<String> saveAudioRecording(@ModelAttribute DtoAudioRecording dtoAudioRecording) {
 
         logger.info("Post dto: " + dtoAudioRecording.toString());
         boolean saveInDateBase = serviceAudioRecordingsImpl.saveAudioRecording(dtoAudioRecording);
@@ -44,7 +42,7 @@ public class AudioRecordingController {
 
 
     // Получаем файл в виде потока
-    @GetMapping("/audio/{id}")
+    @GetMapping("/{id}")
     public ResponseEntity<StreamingResponseBody> getAudioRecording(@PathVariable Long id) {
 
         // Получаем файловые данные из сервиса
@@ -90,7 +88,7 @@ public class AudioRecordingController {
     }
 
     // Получаем все записи из БД
-    @GetMapping("/allAudio")
+    @GetMapping("/all")
     public ResponseEntity<List<DtoAudioRecording>> getAllAudioRecordings() {
 
         List<EntityAudioRecording> allAudioRecordings = serviceAudioRecordingsImpl.getAllAudioRecordings();
