@@ -48,43 +48,43 @@ public class AudioRecordingController {
         // Получаем файловые данные из сервиса
         Optional<AudioRecording> audioRecordingOptional = serviceAudioRecordingsImpl.getAudioRecordingById(id);
 
-        if (audioRecordingOptional.isPresent()) {
-            AudioRecording audioRecording = audioRecordingOptional.get();
-            Blob fileBytes = audioRecording.getAudioBlob();
-
-            // Создаем объект StreamingResponseBody для потоковой передачи данных
-            StreamingResponseBody responseBody = outputStream -> {
-                // Получаем поток байтов из объекта Blob
-                try (InputStream inputStream = fileBytes.getBinaryStream()) {
-                    byte[] buffer = new byte[4096];
-                    int bytesRead;
-                    while ((bytesRead = inputStream.read(buffer)) != -1) {
-                        // Записываем байты в выходной поток
-                        outputStream.write(buffer, 0, bytesRead);
-                    }
-                    outputStream.flush();
-                } catch (SQLException | IOException e) {
-                    throw new RuntimeException(e);
-                }
-            };
-
-            // Устанавливаем заголовки ответа для указания типа контента и длины файла
-            HttpHeaders headers = new HttpHeaders();
-            headers.setContentType(MediaType.APPLICATION_OCTET_STREAM);
-            try {
-                headers.setContentLength((int) fileBytes.length());
-            } catch (SQLException e) {
-                throw new RuntimeException(e);
-            }
-
-            // Возвращаем StreamingResponseBody в ответе
-            return ResponseEntity.ok()
-                    .headers(headers)
-                    .body(responseBody);
-        } else {
-            // Обрабатываем случай, когда аудиозапись не найдена
+        // Обрабатываем случай, когда аудиозапись не найдена
+        if (audioRecordingOptional.isEmpty()) {
             return ResponseEntity.notFound().build();
         }
+
+        AudioRecording audioRecording = audioRecordingOptional.get();
+        Blob fileBytes = audioRecording.getAudioBlob();
+
+        // Создаем объект StreamingResponseBody для потоковой передачи данных
+        StreamingResponseBody responseBody = outputStream -> {
+            // Получаем поток байтов из объекта Blob
+            try (InputStream inputStream = fileBytes.getBinaryStream()) {
+                byte[] buffer = new byte[4096];
+                int bytesRead;
+                while ((bytesRead = inputStream.read(buffer)) != -1) {
+                    // Записываем байты в выходной поток
+                    outputStream.write(buffer, 0, bytesRead);
+                }
+                outputStream.flush();
+            } catch (SQLException | IOException e) {
+                throw new RuntimeException(e);
+            }
+        };
+
+        // Устанавливаем заголовки ответа для указания типа контента и длины файла
+        HttpHeaders headers = new HttpHeaders();
+        headers.setContentType(MediaType.APPLICATION_OCTET_STREAM);
+        try {
+            headers.setContentLength((int) fileBytes.length());
+        } catch (SQLException e) {
+            throw new RuntimeException(e);
+        }
+
+        // Возвращаем StreamingResponseBody в ответе
+        return ResponseEntity.ok()
+                .headers(headers)
+                .body(responseBody);
     }
 
     // Получаем все записи из БД
@@ -107,6 +107,4 @@ public class AudioRecordingController {
 
         return ResponseEntity.ok(dtoAudioRecordings);
     }
-
-
 }
