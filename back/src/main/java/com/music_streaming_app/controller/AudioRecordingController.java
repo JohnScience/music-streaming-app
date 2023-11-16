@@ -1,7 +1,7 @@
 package com.music_streaming_app.controller;
 
 import com.music_streaming_app.dto.DtoAudioRecording;
-import com.music_streaming_app.entity.EntityAudioRecording;
+import com.music_streaming_app.entity.AudioRecording;
 import com.music_streaming_app.service.impl.ServiceAudioRecordingsImpl;
 import lombok.RequiredArgsConstructor;
 import org.springframework.http.HttpHeaders;
@@ -46,10 +46,10 @@ public class AudioRecordingController {
     public ResponseEntity<StreamingResponseBody> getAudioRecording(@PathVariable Long id) {
 
         // Получаем файловые данные из сервиса
-        Optional<EntityAudioRecording> audioRecordingOptional = serviceAudioRecordingsImpl.getAudioRecordingById(id);
+        Optional<AudioRecording> audioRecordingOptional = serviceAudioRecordingsImpl.getAudioRecordingById(id);
 
         if (audioRecordingOptional.isPresent()) {
-            EntityAudioRecording audioRecording = audioRecordingOptional.get();
+            AudioRecording audioRecording = audioRecordingOptional.get();
             Blob fileBytes = audioRecording.getAudioBlob();
 
             // Создаем объект StreamingResponseBody для потоковой передачи данных
@@ -91,17 +91,17 @@ public class AudioRecordingController {
     @GetMapping("/all")
     public ResponseEntity<List<DtoAudioRecording>> getAllAudioRecordings() {
 
-        List<EntityAudioRecording> allAudioRecordings = serviceAudioRecordingsImpl.getAllAudioRecordings();
+        List<AudioRecording> allAudioRecordings = serviceAudioRecordingsImpl.getAllAudioRecordings();
 
         List<DtoAudioRecording> dtoAudioRecordings = new ArrayList<>();
 
-        for (EntityAudioRecording entityAudioRecording : allAudioRecordings) {
+        for (AudioRecording audioRecording : allAudioRecordings) {
             DtoAudioRecording dtoAudioRecording = new DtoAudioRecording();
-            dtoAudioRecording.setId(entityAudioRecording.getId());
-            dtoAudioRecording.setAuthor(entityAudioRecording.getAuthor());
-            dtoAudioRecording.setDescription(entityAudioRecording.getDescription());
-            dtoAudioRecording.setSourceUrl(entityAudioRecording.getSourceUrl());
-            dtoAudioRecording.setCreatedAt(entityAudioRecording.getCreatedAt());
+            dtoAudioRecording.setId(audioRecording.getId());
+            dtoAudioRecording.setAuthor(audioRecording.getAuthor());
+            dtoAudioRecording.setDescription(audioRecording.getDescription());
+            dtoAudioRecording.setSourceUrl(audioRecording.getSourceUrl());
+            dtoAudioRecording.setCreatedAt(audioRecording.getCreatedAt());
             dtoAudioRecordings.add(dtoAudioRecording);
         }
 

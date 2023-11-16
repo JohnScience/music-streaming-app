@@ -10,7 +10,7 @@ import java.time.LocalDateTime;
 @Data
 @Entity
 @Table(name = "audio_recordings")
-public class EntityAudioRecording {
+public class AudioRecording {
 
     @Id
     @Column(name = "id")

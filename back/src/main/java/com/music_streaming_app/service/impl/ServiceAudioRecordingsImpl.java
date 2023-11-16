@@ -1,7 +1,7 @@
 package com.music_streaming_app.service.impl;
 
 import com.music_streaming_app.dto.DtoAudioRecording;
-import com.music_streaming_app.entity.EntityAudioRecording;
+import com.music_streaming_app.entity.AudioRecording;
 import com.music_streaming_app.reposytory.RepositoryAudioRecordings;
 import com.music_streaming_app.service.ServiceAudioRecordings;
 import lombok.RequiredArgsConstructor;
@@ -23,33 +23,33 @@ public class ServiceAudioRecordingsImpl implements ServiceAudioRecordings {
     private final RepositoryAudioRecordings repositoryAudioRecordings;
 
     @Override
-    public List<EntityAudioRecording> getAllAudioRecordings() {
+    public List<AudioRecording> getAllAudioRecordings() {
         return repositoryAudioRecordings.findAll();
     }
 
     @Override
-    public Optional<EntityAudioRecording> getAudioRecordingById(Long id) {
+    public Optional<AudioRecording> getAudioRecordingById(Long id) {
         return Optional.of(repositoryAudioRecordings.getReferenceById(id));
     }
 
     @Override
     @Transactional
-    public boolean saveAudioRecording(DtoAudioRecording audioRecording) {
+    public boolean saveAudioRecording(DtoAudioRecording dtoAudioRecording) {
 
-        EntityAudioRecording entityAudioRecording = new EntityAudioRecording();
+        AudioRecording AudioRecording = new AudioRecording();
 
         try {
-            entityAudioRecording.setAudioBlob(new SerialBlob(audioRecording.getFile().getBytes()));
+            AudioRecording.setAudioBlob(new SerialBlob(dtoAudioRecording.getFile().getBytes()));
         } catch (IOException | SQLException e) {
             throw new RuntimeException(e);
         }
 
-        entityAudioRecording.setAuthor(audioRecording.getAuthor());
-        entityAudioRecording.setDescription(audioRecording.getDescription());
-        entityAudioRecording.setSourceUrl(audioRecording.getSourceUrl());
-        entityAudioRecording.setCreatedAt(LocalDateTime.now());
+        AudioRecording.setAuthor(dtoAudioRecording.getAuthor());
+        AudioRecording.setDescription(dtoAudioRecording.getDescription());
+        AudioRecording.setSourceUrl(dtoAudioRecording.getSourceUrl());
+        AudioRecording.setCreatedAt(LocalDateTime.now());
 
-        repositoryAudioRecordings.save(entityAudioRecording);
+        repositoryAudioRecordings.save(AudioRecording);
 
         return true;
     }
