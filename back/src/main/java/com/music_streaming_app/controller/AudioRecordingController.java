@@ -53,13 +53,12 @@ public class AudioRecordingController {
             return ResponseEntity.notFound().build();
         }
 
-        AudioRecording audioRecording = audioRecordingOptional.get();
-        Blob fileBytes = audioRecording.getAudioBlob();
+        Blob audioBlob = audioRecordingOptional.get().getAudioBlob();
 
         // Создаем объект StreamingResponseBody для потоковой передачи данных
         StreamingResponseBody responseBody = outputStream -> {
             // Получаем поток байтов из объекта Blob
-            try (InputStream inputStream = fileBytes.getBinaryStream()) {
+            try (InputStream inputStream = audioBlob.getBinaryStream()) {
                 byte[] buffer = new byte[4096];
                 int bytesRead;
                 while ((bytesRead = inputStream.read(buffer)) != -1) {
@@ -76,7 +75,7 @@ public class AudioRecordingController {
         HttpHeaders headers = new HttpHeaders();
         headers.setContentType(MediaType.APPLICATION_OCTET_STREAM);
         try {
-            headers.setContentLength((int) fileBytes.length());
+            headers.setContentLength((int) audioBlob.length());
         } catch (SQLException e) {
             throw new RuntimeException(e);
         }
@@ -96,12 +95,12 @@ public class AudioRecordingController {
         List<DtoAudioRecording> dtoAudioRecordings = new ArrayList<>();
 
         for (AudioRecording audioRecording : allAudioRecordings) {
-            DtoAudioRecording dtoAudioRecording = new DtoAudioRecording();
-            dtoAudioRecording.setId(audioRecording.getId());
-            dtoAudioRecording.setAuthor(audioRecording.getAuthor());
-            dtoAudioRecording.setDescription(audioRecording.getDescription());
-            dtoAudioRecording.setSourceUrl(audioRecording.getSourceUrl());
-            dtoAudioRecording.setCreatedAt(audioRecording.getCreatedAt());
+            DtoAudioRecording dtoAudioRecording = DtoAudioRecording.builder()
+                    .id(audioRecording.getId())
+                    .author(audioRecording.getAuthor())
+                    .description(audioRecording.getDescription())
+                    .sourceUrl(audioRecording.getSourceUrl())
+                    .createdAt(audioRecording.getCreatedAt()).build();
             dtoAudioRecordings.add(dtoAudioRecording);
         }
 

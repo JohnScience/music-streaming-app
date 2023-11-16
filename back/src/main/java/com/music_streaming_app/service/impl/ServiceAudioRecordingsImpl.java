@@ -11,7 +11,6 @@ import org.springframework.transaction.annotation.Transactional;
 import javax.sql.rowset.serial.SerialBlob;
 import java.io.IOException;
 import java.sql.SQLException;
-import java.time.LocalDateTime;
 import java.util.List;
 import java.util.Optional;
 
@@ -35,22 +34,18 @@ public class ServiceAudioRecordingsImpl implements ServiceAudioRecordings {
     @Override
     @Transactional
     public boolean saveAudioRecording(DtoAudioRecording dtoAudioRecording) {
-
-        AudioRecording AudioRecording = new AudioRecording();
-
+        AudioRecording audioRecording;
         try {
-            AudioRecording.setAudioBlob(new SerialBlob(dtoAudioRecording.getFile().getBytes()));
-        } catch (IOException | SQLException e) {
+            audioRecording = AudioRecording.builder()
+                    .audioBlob(new SerialBlob(dtoAudioRecording.getFile().getBytes()))
+                    .author(dtoAudioRecording.getAuthor())
+                    .description(dtoAudioRecording.getDescription())
+                    .sourceUrl(dtoAudioRecording.getSourceUrl()).build();
+        } catch (SQLException | IOException e) {
             throw new RuntimeException(e);
         }
 
-        AudioRecording.setAuthor(dtoAudioRecording.getAuthor());
-        AudioRecording.setDescription(dtoAudioRecording.getDescription());
-        AudioRecording.setSourceUrl(dtoAudioRecording.getSourceUrl());
-        AudioRecording.setCreatedAt(LocalDateTime.now());
-
-        repositoryAudioRecordings.save(AudioRecording);
-
+        repositoryAudioRecordings.save(audioRecording);
         return true;
     }
 }

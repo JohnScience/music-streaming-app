@@ -9,6 +9,9 @@ import java.time.LocalDateTime;
 
 @Data
 @Entity
+@Builder
+@AllArgsConstructor
+@NoArgsConstructor
 @Table(name = "audio_recordings")
 public class AudioRecording {
 
