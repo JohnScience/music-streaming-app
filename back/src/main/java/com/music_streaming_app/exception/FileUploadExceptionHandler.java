@@ -10,8 +10,10 @@ import org.springframework.web.servlet.mvc.method.annotation.ResponseEntityExcep
 
 public class FileUploadExceptionHandler extends ResponseEntityExceptionHandler {
 
+    private static final int  UNABLE_TO_PROCESS_FILE = 417;
+
     @ApiResponses(value = {
-            @ApiResponse(code = 417, message = "Expectation Failed")
+            @ApiResponse(code = UNABLE_TO_PROCESS_FILE, message = "Expectation Failed")
     })
     @ExceptionHandler(MaxUploadSizeExceededException.class)
     public ResponseEntity<String> handleMaxSizeException(MaxUploadSizeExceededException exc) {
