@@ -1,1 +1,1 @@
-CREATE SCHEMA IF NOT EXISTS audio_recordings;
+CREATE SCHEMA IF NOT EXISTS audio_recordings_schema;
