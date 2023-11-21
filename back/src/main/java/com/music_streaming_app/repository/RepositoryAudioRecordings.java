@@ -1,4 +1,4 @@
-package com.music_streaming_app.reposytory;
+package com.music_streaming_app.repository;
 
 import com.music_streaming_app.entity.AudioRecording;
 import org.springframework.data.jpa.repository.JpaRepository;

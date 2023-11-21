@@ -2,7 +2,7 @@ package com.music_streaming_app.service.impl;
 
 import com.music_streaming_app.dto.DtoAudioRecording;
 import com.music_streaming_app.entity.AudioRecording;
-import com.music_streaming_app.reposytory.RepositoryAudioRecordings;
+import com.music_streaming_app.repository.RepositoryAudioRecordings;
 import com.music_streaming_app.service.ServiceAudioRecordings;
 import lombok.RequiredArgsConstructor;
 import org.springframework.stereotype.Service;
