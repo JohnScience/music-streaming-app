@@ -20,6 +20,7 @@
 * **Q:** [Как сделать коммит](https://struchkov.dev/blog/ru/git-how-to-commit/)?
 * **Q:** Как назвать коммит? Следуйте [Conventional Commits](https://www.conventionalcommits.org/ru/v1.0.0/) стилю.
 * **Q:** [Как сделать pull request](https://rustycrate.ru/%D1%80%D1%83%D0%BA%D0%BE%D0%B2%D0%BE%D0%B4%D1%81%D1%82%D0%B2%D0%B0/2016/03/07/contributing.html)?
+* **Q:** Как решить проблему не описанную выше? Можете почитать [Git Flight Rules](https://github.com/k88hudson/git-flight-rules) или пообщаться с [ChatGPT](https://chat.openai.com/).
 
 ---
 
