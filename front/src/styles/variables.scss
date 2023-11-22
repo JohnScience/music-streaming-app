@@ -1,0 +1,60 @@
+// Colors
+$color-main:'';
+
+// Fonts
+$font-family-primary: '';
+$font-family-secondary: '';
+
+$font-size-base: '';
+$line-height-base: '';
+
+$font-size-xxl: '';
+$line-height-xxl: '';
+
+$font-size-xl: '';
+$line-height-xl: '';
+
+$font-size-lg: 32px;
+$line-height-lg: '';
+
+$font-size-md: 24px;
+$line-height-md: '';
+
+$font-size-sm: 18px;
+$line-height-sm: '';
+
+$font-size-xs: '';
+$line-height-xs: '';
+
+// Animate
+$transition-base: 0.3s;
+
+// Breakpoints
+$breakpoint-lg-down: 1279px;
+$breakpoint-md-down: 1023px;
+$breakpoint-sm-down: 767px;
+$breakpoint-xs-down: 413px;
+
+@mixin lg-down {
+  @media (max-width: #{$breakpoint-lg-down}) {
+    @content;
+  }
+}
+
+@mixin md-down {
+  @media (max-width: #{$breakpoint-md-down}) {
+    @content;
+  }
+}
+
+@mixin sm-down {
+  @media (max-width: #{$breakpoint-sm-down}) {
+    @content;
+  }
+}
+
+@mixin xs-down {
+  @media (max-width: #{$breakpoint-xs-down}) {
+    @content;
+  }
+}
