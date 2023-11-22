@@ -1,0 +1,23 @@
+.header {
+}
+
+.logo {
+  max-width: 100px;
+}
+
+.navigation {
+  display: flex;
+  align-items: center;
+  column-gap: 50px;
+  justify-content: space-between;
+}
+
+.list {
+  display: flex;
+  column-gap: 30px;
+  align-items: center;
+}
+
+.link_promo {
+  margin-left: 20px;
+}
