@@ -38,7 +38,7 @@ public class ServiceAudioRecordingsImpl implements ServiceAudioRecordings {
         try {
             audioRecording = AudioRecording.builder()
                     .audioBlob(new SerialBlob(dtoAudioRecording.getFile().getBytes()))
-                    .author(dtoAudioRecording.getAuthor())
+//                    .author(dtoAudioRecording.getAuthor())
                     .description(dtoAudioRecording.getDescription())
                     .sourceUrl(dtoAudioRecording.getSourceUrl()).build();
         } catch (SQLException | IOException e) {

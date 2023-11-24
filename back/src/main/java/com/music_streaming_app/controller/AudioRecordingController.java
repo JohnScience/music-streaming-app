@@ -4,13 +4,12 @@ import com.music_streaming_app.dto.DtoAudioRecording;
 import com.music_streaming_app.entity.AudioRecording;
 import com.music_streaming_app.service.impl.ServiceAudioRecordingsImpl;
 import lombok.RequiredArgsConstructor;
+import org.slf4j.Logger;
+import org.slf4j.LoggerFactory;
 import org.springframework.http.HttpHeaders;
 import org.springframework.http.MediaType;
 import org.springframework.http.ResponseEntity;
 import org.springframework.web.bind.annotation.*;
-
-import org.slf4j.Logger;
-import org.slf4j.LoggerFactory;
 import org.springframework.web.servlet.mvc.method.annotation.StreamingResponseBody;
 
 import java.io.IOException;
@@ -89,7 +88,6 @@ public class AudioRecordingController {
     // Получаем все записи из БД
     @GetMapping("/all")
     public ResponseEntity<List<DtoAudioRecording>> getAllAudioRecordings() {
-
         List<AudioRecording> allAudioRecordings = serviceAudioRecordingsImpl.getAllAudioRecordings();
 
         List<DtoAudioRecording> dtoAudioRecordings = new ArrayList<>();
@@ -97,10 +95,13 @@ public class AudioRecordingController {
         for (AudioRecording audioRecording : allAudioRecordings) {
             DtoAudioRecording dtoAudioRecording = DtoAudioRecording.builder()
                     .id(audioRecording.getId())
-                    .author(audioRecording.getAuthor())
+//                    .author(audioRecording.getAuthor())
+                    .authors(audioRecording.getAuthors())
                     .description(audioRecording.getDescription())
                     .sourceUrl(audioRecording.getSourceUrl())
-                    .createdAt(audioRecording.getCreatedAt()).build();
+                    .createdAt(audioRecording.getCreatedAt())
+                    .build();
+
             dtoAudioRecordings.add(dtoAudioRecording);
         }
 

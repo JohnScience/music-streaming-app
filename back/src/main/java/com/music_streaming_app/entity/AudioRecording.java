@@ -1,11 +1,15 @@
 package com.music_streaming_app.entity;
 
 import jakarta.persistence.*;
-import lombok.*;
+import lombok.AllArgsConstructor;
+import lombok.Builder;
+import lombok.Data;
+import lombok.NoArgsConstructor;
 import org.hibernate.annotations.CreationTimestamp;
 
 import java.sql.Blob;
 import java.time.LocalDateTime;
+import java.util.Set;
 
 @Data
 @Entity
@@ -20,12 +24,8 @@ public class AudioRecording {
     @GeneratedValue(strategy = GenerationType.SEQUENCE)
     private Long id;
 
-    @Lob
-    @Column(name = "audio_blob", nullable = false)
-    private Blob audioBlob;
-
-    @Column(name = "author", nullable = false)
-    private String author;
+    @Column(name = "title", nullable = false)
+    private String title;
 
     @Column(name = "description")
     private String description;
@@ -33,7 +33,22 @@ public class AudioRecording {
     @Column(name = "source_url", nullable = false)
     private String sourceUrl;
 
+    @Column(name = "duration_secs", nullable = false)
+    private int durationSecs;
+
     @CreationTimestamp
     @Column(name = "created_at", nullable = false)
     private LocalDateTime createdAt;
+
+    @Lob
+    @Column(name = "audio_blob", nullable = false)
+    private Blob audioBlob;
+
+    @Lob
+    @Column(name = "thumbnail")
+    private Blob thumbnail;
+
+    @ManyToMany(mappedBy = "audioRecordings")
+    private Set<Author> authors = new java.util.LinkedHashSet<>();
+
 }
