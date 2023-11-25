@@ -2,25 +2,6 @@ import React from 'react';
 import { Link } from 'react-router-dom';
 import styled from 'styled-components';
 
-const StyledFooter = styled.footer`
-
-  background-color: #f0f0f0;
-  padding: 20px;
-`;
-
-const StyledList = styled.ul`
-
-  list-style: none;
-  padding: 0;
-  display: flex;
-  column-gap: 20px;
-`;
-
-const StyledItem = styled.li`
-
-  margin-bottom: 10px;
-`;
-
 const Footer: React.FC = () => {
   return (
     <StyledFooter>
@@ -45,3 +26,19 @@ const Footer: React.FC = () => {
 };
 
 export default Footer;
+
+const StyledFooter = styled.footer`
+  background-color: #f0f0f0;
+  padding: 20px;
+`;
+
+const StyledList = styled.ul`
+  list-style: none;
+  padding: 0;
+  display: flex;
+  column-gap: 20px;
+`;
+
+const StyledItem = styled.li`
+  margin-bottom: 10px;
+`;
