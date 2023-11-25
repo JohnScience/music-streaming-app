@@ -18,7 +18,7 @@ public class DtoAudioRecording {
     private Long id;
     private MultipartFile file;
 //    private String author;
-    private Set<Author> authors;
+    private Author author;
     private String description;
     private String sourceUrl;
     private LocalDateTime createdAt;

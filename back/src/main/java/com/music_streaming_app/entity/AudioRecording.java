@@ -9,7 +9,6 @@ import org.hibernate.annotations.CreationTimestamp;
 
 import java.sql.Blob;
 import java.time.LocalDateTime;
-import java.util.Set;
 
 @Data
 @Entity
@@ -26,6 +25,10 @@ public class AudioRecording {
 
     @Column(name = "title", nullable = false)
     private String title;
+
+    @ManyToOne
+    @JoinColumn(name = "author_id")
+    private Author author;
 
     @Column(name = "description")
     private String description;
@@ -47,8 +50,5 @@ public class AudioRecording {
     @Lob
     @Column(name = "thumbnail")
     private Blob thumbnail;
-
-    @ManyToMany(mappedBy = "audioRecordings")
-    private Set<Author> authors = new java.util.LinkedHashSet<>();
 
 }

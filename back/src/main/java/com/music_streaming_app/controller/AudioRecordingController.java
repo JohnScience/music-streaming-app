@@ -95,8 +95,7 @@ public class AudioRecordingController {
         for (AudioRecording audioRecording : allAudioRecordings) {
             DtoAudioRecording dtoAudioRecording = DtoAudioRecording.builder()
                     .id(audioRecording.getId())
-//                    .author(audioRecording.getAuthor())
-                    .authors(audioRecording.getAuthors())
+                    .author(audioRecording.getAuthor())
                     .description(audioRecording.getDescription())
                     .sourceUrl(audioRecording.getSourceUrl())
                     .createdAt(audioRecording.getCreatedAt())

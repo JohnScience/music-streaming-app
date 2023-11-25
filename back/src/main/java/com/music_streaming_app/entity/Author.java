@@ -1,13 +1,10 @@
 package com.music_streaming_app.entity;
 
-import com.fasterxml.jackson.annotation.JsonIgnore;
 import jakarta.persistence.*;
-import lombok.*;
+import lombok.Getter;
 import org.hibernate.annotations.CreationTimestamp;
 
 import java.time.LocalDateTime;
-import java.util.LinkedHashSet;
-import java.util.Set;
 
 @Entity
 @Getter
@@ -29,13 +26,5 @@ public class Author {
   @CreationTimestamp
   @Column(name = "created_at", nullable = false)
   private LocalDateTime createdAt;
-
-  @ToString.Exclude
-  @JsonIgnore
-  @ManyToMany
-  @JoinTable(name = "authors_audio_recordings",
-    joinColumns = @JoinColumn(name = "author_id"),
-    inverseJoinColumns = @JoinColumn(name = "audio_recording_id"))
-  private Set<AudioRecording> audioRecordings = new LinkedHashSet<>();
 
 }
