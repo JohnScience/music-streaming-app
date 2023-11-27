@@ -1,6 +1,7 @@
 version: '3'
 services:
   postgres:
+    hostname: postgres_host
     container_name: postgres
     image: postgres
     volumes:
@@ -12,7 +13,7 @@ services:
       POSTGRES_PASSWORD: qUu-MAX-7eU-PSW
       POSTGRES_DB: audio_service_db
     ports:
-      - "5433:5432"
+      - "5432:5432"
 
     healthcheck:
       test: ["CMD-SHELL", "pg_isready -U user -d audio_service_db"]
@@ -22,6 +23,14 @@ services:
   back:
     container_name: back
     build: ./back
+    ports:
+      - "8080:8080"
+    depends_on:
+      postgres:
+        condition: service_healthy
+  alt-back:
+    build:
+      context: ./alt-back
     ports:
       - "8080:8080"
     depends_on:

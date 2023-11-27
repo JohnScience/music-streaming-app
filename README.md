@@ -46,14 +46,10 @@ git clone --depth 1 https://github.com/JohnScience/music-streaming-app
 cd music-streaming-app/back
 ```
 
-3. Чтобы очистить и собрать JAR файл вашего проекта с помощью Maven выполните команду
+3. Для запуска docker контейнера введите комманду
 
 ```console
-mvn clean package
+docker-compose up back
 ```
 
-4. Для запуска docker контейнера введите комманду 
-
-```console
-docker-compose up 
-```
+**Примечание:** Если вы хотите проверить альтернативный бэкенд, то вместо `back` введите `alt-back`.
