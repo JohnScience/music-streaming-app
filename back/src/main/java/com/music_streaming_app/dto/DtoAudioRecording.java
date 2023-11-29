@@ -7,6 +7,8 @@ import lombok.Data;
 import lombok.NoArgsConstructor;
 import org.springframework.web.multipart.MultipartFile;
 
+import java.time.LocalDateTime;
+
 @Data
 @Builder
 @AllArgsConstructor
@@ -17,4 +19,5 @@ public class DtoAudioRecording {
     private Artist artist;
     private String description;
     private String sourceUrl;
+    private LocalDateTime createdAt;
 }
