@@ -98,7 +98,6 @@ public class AudioRecordingController {
                     .author(audioRecording.getAuthor())
                     .description(audioRecording.getDescription())
                     .sourceUrl(audioRecording.getSourceUrl())
-                    .createdAt(audioRecording.getCreatedAt())
                     .build();
 
             dtoAudioRecordings.add(dtoAudioRecording);
