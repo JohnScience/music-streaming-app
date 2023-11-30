@@ -1,0 +1,16 @@
+
+{
+    // Extensions
+    "recommendations": [
+      "mikestead.dotenv",
+      "streetsidesoftware.code-spell-checker",
+      "streetsidesoftware.code-spell-checker-russian",
+      "dsznajder.es7-react-js-snippets",
+      "dbaeumer.vscode-eslint",
+      "esbenp.prettier-vscode",
+      
+    ],
+  
+    // Unwanted extensions
+    "unwantedRecommendations": []
+  }
