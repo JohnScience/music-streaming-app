@@ -1,0 +1,8 @@
+{
+  "editor.defaultFormatter": "esbenp.prettier-vscode",
+  "cSpell.language": "en,ru",
+
+  "editor.formatOnSave": true,
+  "lint:es": "eslint --ext .js,.jsx,.ts,.tsx src",
+  "lint:es:fix": "npm run lint:es -- --fix"
+}
