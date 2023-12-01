@@ -40,7 +40,6 @@ public class AudioRecordingController {
         return ResponseEntity.ok("Audio recording " + saveInDateBase);
     }
 
-
     // Получаем файл в виде потока
     @GetMapping("/{id}")
     public ResponseEntity<StreamingResponseBody> getAudioRecording(@PathVariable Long id) {
@@ -115,18 +114,16 @@ public class AudioRecordingController {
                 serviceAudioRecordingsImpl.getFeaturedAudioRecordings()
                         .stream()
                         .map(this::toDto)
-                        .toList()
-        );
+                        .toList());
 
     }
 
     private DtoAudioRecording toDto(AudioRecording ar) {
         return DtoAudioRecording.builder()
                 .id(ar.getId())
-                .author(ar.getAuthor())
+                .artist(ar.getArtist())
                 .description(ar.getDescription())
                 .sourceUrl(ar.getSourceUrl())
-                .createdAt(ar.getCreatedAt())
                 .build();
     }
 }
