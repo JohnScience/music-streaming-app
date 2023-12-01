@@ -9,8 +9,8 @@ import java.time.LocalDateTime;
 @Entity
 @Getter
 //@ToString   // for debug only
-@Table(name = "authors")
-public class Author {
+@Table(name = "artists")
+public class Artist {
 
   @Id
   @Column(name = "id")

@@ -27,8 +27,8 @@ public class AudioRecording {
     private String title;
 
     @ManyToOne
-    @JoinColumn(name = "author_id")
-    private Author author;
+    @JoinColumn(name = "artist_id")
+    private Artist artist;
 
     @Column(name = "description")
     private String description;
