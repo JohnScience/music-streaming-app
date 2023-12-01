@@ -13,6 +13,7 @@ import java.io.IOException;
 import java.sql.SQLException;
 import java.util.List;
 import java.util.Optional;
+import java.util.Set;
 
 @Service
 @RequiredArgsConstructor
@@ -24,6 +25,11 @@ public class ServiceAudioRecordingsImpl implements ServiceAudioRecordings {
     @Override
     public List<AudioRecording> getAllAudioRecordings() {
         return repositoryAudioRecordings.findAll();
+    }
+
+    @Override
+    public Set<AudioRecording> getFeaturedAudioRecordings() {
+        return repositoryAudioRecordings.findFeatured();
     }
 
     @Override

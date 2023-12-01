@@ -3,6 +3,7 @@ package com.music_streaming_app.controller;
 import com.music_streaming_app.dto.DtoAudioRecording;
 import com.music_streaming_app.entity.AudioRecording;
 import com.music_streaming_app.service.impl.ServiceAudioRecordingsImpl;
+import io.swagger.v3.oas.annotations.Operation;
 import lombok.RequiredArgsConstructor;
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
@@ -104,5 +105,28 @@ public class AudioRecordingController {
         }
 
         return ResponseEntity.ok(dtoAudioRecordings);
+    }
+
+    @Operation(summary = "Получаем рекомендуемые записи из БД")
+    @GetMapping("/featured")
+    public ResponseEntity<List<DtoAudioRecording>> getFeaturedAudioRecordings() {
+
+        return ResponseEntity.ok(
+                serviceAudioRecordingsImpl.getFeaturedAudioRecordings()
+                        .stream()
+                        .map(this::toDto)
+                        .toList()
+        );
+
+    }
+
+    private DtoAudioRecording toDto(AudioRecording ar) {
+        return DtoAudioRecording.builder()
+                .id(ar.getId())
+                .author(ar.getAuthor())
+                .description(ar.getDescription())
+                .sourceUrl(ar.getSourceUrl())
+                .createdAt(ar.getCreatedAt())
+                .build();
     }
 }
