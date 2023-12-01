@@ -19,5 +19,4 @@ public class DtoAudioRecording {
     private Artist artist;
     private String description;
     private String sourceUrl;
-    private LocalDateTime createdAt;
 }
