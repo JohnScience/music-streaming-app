@@ -1,17 +1,13 @@
 import React from 'react';
-<<<<<<< Updated upstream
 import { Link } from 'react-router-dom';
-=======
 import Filter from '../../components/filter/Filter';
 
->>>>>>> Stashed changes
 import styled from 'styled-components';
 
 const Header: React.FC = () => {
   return (
     <MainHeader>
       <div className="container">
-<<<<<<< Updated upstream
         <Navigation>
           <WrapperLogo>
             <Link to="/">
@@ -49,18 +45,12 @@ const Header: React.FC = () => {
             </LoginLink>
           </ButtonsWrapper>
         </Navigation>
-=======
-        <SearchPanel>
-          <Filter />
-        </SearchPanel>
->>>>>>> Stashed changes
       </div>
     </MainHeader>
   );
 };
 
 export default Header;
-<<<<<<< Updated upstream
 const MainHeader = styled.header``;
 const WrapperLogo = styled.div``;
 const Navigation = styled.nav`
@@ -85,16 +75,3 @@ const ButtonsWrapper = styled.div``;
 const LoginLink = styled(Link)`
   margin-left: 20px;
 `;
-=======
-const MainHeader = styled.header`
-  padding-top: 15px;
-  padding-bottom: 15px;
-`;
-
-const SearchPanel = styled.div`
-  display: flex;
-  justify-content: center;
-`;
-
-const ImageLogin = styled.img``;
->>>>>>> Stashed changes
