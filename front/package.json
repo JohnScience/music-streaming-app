@@ -13,7 +13,9 @@
     "preview": "vite preview"
   },
   "dependencies": {
+    "@reduxjs/toolkit": "^1.9.7",
     "@types/react-redux": "^7.1.31",
+    "@types/react-router-dom": "^5.3.3",
     "@typescript-eslint/eslint-plugin": "^6.13.1",
     "@typescript-eslint/parser": "^6.13.1",
     "axios": "^1.6.2",
@@ -21,7 +23,6 @@
     "eslint-plugin-jsx-a11y": "^6.8.0",
     "formik": "^2.4.5",
     "framer-motion": "^10.16.9",
-    "@types/react-router-dom": "^5.3.3",
     "howler": "^2.2.4",
     "react": "^18.2.0",
     "react-dom": "^18.2.0",
