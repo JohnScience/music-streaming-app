@@ -12,19 +12,19 @@ import java.time.LocalDateTime;
 @Table(name = "artists")
 public class Artist {
 
-  @Id
-  @Column(name = "id")
-  @GeneratedValue(strategy = GenerationType.SEQUENCE)
-  private long id;
+    @Id
+    @Column(name = "id")
+    @GeneratedValue(strategy = GenerationType.SEQUENCE)
+    private long id;
 
-  @Column(name = "name", nullable = false)
-  private String name;
+    @Column(name = "name", nullable = false)
+    private String name;
 
-  @Column(name = "description", nullable = false)
-  private String description;
+    @Column(name = "description", nullable = false)
+    private String description;
 
-  @CreationTimestamp
-  @Column(name = "created_at", nullable = false)
-  private LocalDateTime createdAt;
+    @CreationTimestamp
+    @Column(name = "created_at", nullable = false)
+    private LocalDateTime createdAt;
 
 }
