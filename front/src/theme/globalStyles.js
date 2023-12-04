@@ -13,7 +13,7 @@ const GlobalStyle = createGlobalStyle`
     display:flex;
     justify-content:center;
   padding-top:20px; 
-   min-height: calc(100vh - 223px);
+   min-height: calc(100vh - 130px);
   }
 `
 
