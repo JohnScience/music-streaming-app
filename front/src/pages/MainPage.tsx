@@ -5,24 +5,25 @@ import { Link } from 'react-router-dom'
 import SearchPanel from '../components/pages/home/SearchPanel'
 import GenreList from '../components/pages/home/GenreList'
 import PlayList from '../components/pages/home/PlayList'
-import LeftMenu from '../components/pages/home/LeftMenu'
-import RightMenu from '../components/pages/home/RightMenu'
+import styled from 'styled-components'
 
-// import Player from '../components/pages/home/Player'
+
 const Home = () => {
   return (
     <>
-      <LeftMenu />
-      <div>
-        <SearchPanel />
-        <GenreList />
-        <PlayList />
-      </div>
-      <RightMenu />
-
-      <Outlet />
+    <Container>
+      <SearchPanel />
+      <GenreList />
+      <PlayList />
+      </Container>
+    
     </>
   )
 }
 
 export default Home
+
+const Container = styled.div`
+  max-width: 770px;
+  margin: auto;
+`
