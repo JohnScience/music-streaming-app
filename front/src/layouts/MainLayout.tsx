@@ -10,14 +10,19 @@ const MainLayout: React.FC = () => {
   return (
     <>
       <MainMenu />
-      <main>
+      <MainContent>
         <Outlet />
-      </main>
+      </MainContent>
       <RightMenu />
-
       <Player />
     </>
   )
 }
 
 export default MainLayout
+
+const MainContent = styled.main`
+  main {
+    padding-top: 20px;
+  }
+`

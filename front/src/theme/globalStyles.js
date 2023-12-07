@@ -8,6 +8,7 @@ const GlobalStyle = createGlobalStyle`
     background:#111111;
     font-family: Open-Sans, Helvetica, Sans-Serif;
   }
+  
   #root{
     margin:auto;
     max-width:1440px;
@@ -18,9 +19,6 @@ const GlobalStyle = createGlobalStyle`
     justify-content:center;
   }
   
-  main{
-  padding-top:20px; 
-  }
   
 `
 
