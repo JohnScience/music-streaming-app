@@ -1,18 +1,17 @@
 import React from 'react'
-// import img from './RightMenu.png'
+import img from './RightMenu.png'
 import styled from 'styled-components'
 
 const RightMenu: React.FC = () => {
   return (
     <MainMenuRight>
-      {/* <img src={img} alt='' /> */}
+      <img src={img} alt='' />
     </MainMenuRight>
   )
 }
 
 export default RightMenu
 
-
 const MainMenuRight = styled.div`
-width:454px;
+  max-width: 348px;
 `

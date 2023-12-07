@@ -12,6 +12,4 @@ const Player: React.FC = () => {
 export default Player
 
 const MainPlayer = styled.div`
-  margin: auto;
-  max-width: 1440px;
 `
