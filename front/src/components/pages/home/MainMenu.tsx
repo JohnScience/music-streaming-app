@@ -12,5 +12,4 @@ const MainMenu: React.FC = () => {
 
 export default MainMenu
 
-const MainMenuStyles = styled.div`
-`
+const MainMenuStyles = styled.div``

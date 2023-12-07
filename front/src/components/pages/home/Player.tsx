@@ -11,5 +11,4 @@ const Player: React.FC = () => {
 
 export default Player
 
-const MainPlayer = styled.div`
-`
+const MainPlayer = styled.div``
