@@ -4,17 +4,24 @@ const GlobalStyle = createGlobalStyle`
   body {
     margin: 0;
     padding: 0;
-     height: 100%;
+     min-height: 100vh;
     background:#111111;
     font-family: Open-Sans, Helvetica, Sans-Serif;
   }
-
-  main{
-    display:flex;
+  #root{
+    margin:auto;
+    max-width:1440px;
+    display:grid;
+    grid-template-columns: 275px 1fr 348px ;
+    grid-template-rows: 1fr auto;
+    gap:30px;
     justify-content:center;
-  padding-top:20px; 
-   min-height: calc(100vh - 130px);
   }
+  
+  main{
+  padding-top:20px; 
+  }
+  
 `
 
 export default GlobalStyle
