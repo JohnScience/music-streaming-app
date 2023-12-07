@@ -14,7 +14,7 @@ const GlobalStyle = createGlobalStyle`
     display:grid;
     grid-template-columns: 275px 1fr 348px ;
     grid-template-rows: 1fr auto;
-    gap:30px;
+    column-gap:30px;
     justify-content:center;
   }
   
