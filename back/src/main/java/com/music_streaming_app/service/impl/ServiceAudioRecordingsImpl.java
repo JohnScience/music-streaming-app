@@ -50,7 +50,6 @@ public class ServiceAudioRecordingsImpl implements ServiceAudioRecordings {
     }
 
     @Override
-    @Transactional//спросить почему убрать
     public boolean saveAudioRecording(DtoAudioRecording dtoAudioRecording) {
         AudioRecording audioRecording = AudioRecordingConverter.toAudioRecording(dtoAudioRecording);
         repositoryAudioRecordings.save(audioRecording);
