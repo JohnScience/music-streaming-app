@@ -1,8 +1,8 @@
 package com.music_streaming_app.controller;
 
+import com.music_streaming_app.converter.AudioRecordingConverter;
 import com.music_streaming_app.dto.DtoAudioRecording;
-import com.music_streaming_app.entity.AudioRecording;
-import com.music_streaming_app.service.impl.ServiceAudioRecordingsImpl;
+import com.music_streaming_app.service.ServiceAudioRecordings;
 import io.swagger.v3.oas.annotations.Operation;
 import lombok.RequiredArgsConstructor;
 import org.slf4j.Logger;
@@ -11,8 +11,8 @@ import org.springframework.http.MediaType;
 import org.springframework.http.ResponseEntity;
 import org.springframework.web.bind.annotation.*;
 import org.springframework.web.servlet.mvc.method.annotation.StreamingResponseBody;
+
 import java.util.List;
-import java.util.Optional;
 
 @RestController
 @RequiredArgsConstructor
@@ -21,33 +21,25 @@ public class AudioRecordingController {
 
     private static final Logger logger = LoggerFactory.getLogger(AudioRecordingController.class);
 
-    private final ServiceAudioRecordingsImpl serviceAudioRecordingsImpl;
+    private final ServiceAudioRecordings serviceAudioRecordings;
 
     @PostMapping(value = "/save", consumes = MediaType.MULTIPART_FORM_DATA_VALUE)
     public ResponseEntity<String> saveAudioRecording(@ModelAttribute DtoAudioRecording dtoAudioRecording) {
 
         logger.info("Post dto: " + dtoAudioRecording.toString());
-        boolean saveInDateBase = serviceAudioRecordingsImpl.saveAudioRecording(dtoAudioRecording);
+        boolean saveInDateBase = serviceAudioRecordings.saveAudioRecording(dtoAudioRecording);
 
         return ResponseEntity.ok("Audio recording " + saveInDateBase);
     }
 
     @GetMapping("/{id}")
     public ResponseEntity<StreamingResponseBody> getAudioRecording(@PathVariable Long id) {
-
-        Optional<AudioRecording> audioRecordingOptional = serviceAudioRecordingsImpl.getAudioRecordingById(id);
-
-        if (audioRecordingOptional.isEmpty()) {
-            return ResponseEntity.notFound().build();
-        }
-
-        //Чтобы не дергать бд несколько раз, то уже полученный объект передаём в метод
-        return serviceAudioRecordingsImpl.getAudioRecording(audioRecordingOptional);
+        return serviceAudioRecordings.getAudioRecordingById(id);
     }
 
     @GetMapping("/all")
     public ResponseEntity<List<DtoAudioRecording>> getAllAudioRecordings() {
-        return serviceAudioRecordingsImpl.getAllDtoAudioRecordings();
+        return serviceAudioRecordings.getAllDtoAudioRecordings();
     }
 
     @Operation(summary = "Получаем рекомендуемые записи из БД")
@@ -55,19 +47,9 @@ public class AudioRecordingController {
     public ResponseEntity<List<DtoAudioRecording>> getFeaturedAudioRecordings() {
 
         return ResponseEntity.ok(
-                serviceAudioRecordingsImpl.getFeaturedAudioRecordings()
+                serviceAudioRecordings.getFeaturedAudioRecordings()
                         .stream()
-                        .map(this::toDto)
+                        .map(AudioRecordingConverter::toDto)
                         .toList());
-
-    }
-
-    private DtoAudioRecording toDto(AudioRecording ar) {
-        return DtoAudioRecording.builder()
-                .id(ar.getId())
-                .artist(ar.getArtist())
-                .description(ar.getDescription())
-                .sourceUrl(ar.getSourceUrl())
-                .build();
     }
 }
