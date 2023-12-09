@@ -23,7 +23,7 @@ import java.util.Optional;
 
 @RestController
 @RequiredArgsConstructor
-@RequestMapping("api/v1/audio_recording")
+@RequestMapping("api/v1/audio_recordings")
 public class AudioRecordingController {
 
     private static final Logger logger = LoggerFactory.getLogger(AudioRecordingController.class);
@@ -31,7 +31,7 @@ public class AudioRecordingController {
     private final ServiceAudioRecordingsImpl serviceAudioRecordingsImpl;
 
     // Запись данных в БД
-    @PostMapping(value = "/save", consumes = MediaType.MULTIPART_FORM_DATA_VALUE)
+    @PostMapping(consumes = MediaType.MULTIPART_FORM_DATA_VALUE)
     public ResponseEntity<String> saveAudioRecording(@ModelAttribute DtoAudioRecording dtoAudioRecording) {
 
         logger.info("Post dto: " + dtoAudioRecording.toString());
@@ -86,7 +86,7 @@ public class AudioRecordingController {
     }
 
     // Получаем все записи из БД
-    @GetMapping("/all")
+    @GetMapping
     public ResponseEntity<List<DtoAudioRecording>> getAllAudioRecordings() {
         List<AudioRecording> allAudioRecordings = serviceAudioRecordingsImpl.getAllAudioRecordings();
 
