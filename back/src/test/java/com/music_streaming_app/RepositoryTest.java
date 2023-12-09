@@ -9,18 +9,16 @@ import org.springframework.boot.test.context.SpringBootTest;
 @SpringBootTest
 public class RepositoryTest {
 
-  @Autowired
-  RepositoryAudioRecordings repoAudioRecordings;
+    @Autowired
+    RepositoryAudioRecordings repoAudioRecordings;
 
 
-  // TODO: добавить мок-данные и переписать тесты для автоматического тестирования
+    // TODO: добавить мок-данные и переписать тесты для автоматического тестирования
 
-  @Test
-  public void shouldReturnFeaturedAudioRecordings() {
+    @Test
+    public void shouldReturnFeaturedAudioRecordings() {
 
-    System.out.println(repoAudioRecordings.findFeatured());
+        System.out.println(repoAudioRecordings.findFeatured());
 
-  }
-
-
+    }
 }
