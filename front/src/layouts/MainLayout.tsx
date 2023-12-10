@@ -8,14 +8,16 @@ import RightMenu from '../components/pages/home/RightMenu'
 
 const MainLayout: React.FC = () => {
   return (
-    <ContentWrapper>
-      <MainMenu />
-      <MainContent>
-        <Outlet />
-      </MainContent>
-      <RightMenu />
+    <ContentContainer>
+      <Wrapper>
+        <MainMenu />
+        <MainContent>
+          <Outlet />
+        </MainContent>
+        <RightMenu />
+      </Wrapper>
       <Player />
-    </ContentWrapper>
+    </ContentContainer>
   )
 }
 
@@ -25,12 +27,12 @@ const MainContent = styled.main`
   padding-top: 20px;
 `
 
-const ContentWrapper = styled.div`
-  margin: auto;
+const ContentContainer = styled.div`
   max-width: 1440px;
-  display: grid;
-  grid-template-columns: 275px 1fr 348px;
-  grid-template-rows: 1fr auto;
-  column-gap: 30px;
+  margin: auto;
+`
+const Wrapper = styled.div`
+  display: flex;
+  column-gap: 20px;
   justify-content: center;
 `
