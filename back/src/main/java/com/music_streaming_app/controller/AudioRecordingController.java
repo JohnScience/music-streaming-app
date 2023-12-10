@@ -1,6 +1,5 @@
 package com.music_streaming_app.controller;
 
-import com.music_streaming_app.converter.AudioRecordingConverter;
 import com.music_streaming_app.dto.DtoAudioRecording;
 import com.music_streaming_app.service.ServiceAudioRecordings;
 import io.swagger.v3.oas.annotations.Operation;
@@ -25,11 +24,9 @@ public class AudioRecordingController {
 
     @PostMapping(value = "/save", consumes = MediaType.MULTIPART_FORM_DATA_VALUE)
     public ResponseEntity<String> saveAudioRecording(@ModelAttribute DtoAudioRecording dtoAudioRecording) {
-
         logger.info("Post dto: " + dtoAudioRecording.toString());
-        boolean saveInDateBase = serviceAudioRecordings.saveAudioRecording(dtoAudioRecording);
-
-        return ResponseEntity.ok("Audio recording " + saveInDateBase);
+        serviceAudioRecordings.saveAudioRecording(dtoAudioRecording);
+        return ResponseEntity.ok("Audio recording is saved successfully");
     }
 
     @GetMapping("/{id}")
@@ -45,11 +42,6 @@ public class AudioRecordingController {
     @Operation(summary = "Получаем рекомендуемые записи из БД")
     @GetMapping("/featured")
     public ResponseEntity<List<DtoAudioRecording>> getFeaturedAudioRecordings() {
-
-        return ResponseEntity.ok(
-                serviceAudioRecordings.getFeaturedAudioRecordings()
-                        .stream()
-                        .map(AudioRecordingConverter::toDto)
-                        .toList());
+        return serviceAudioRecordings.getFeaturedAudioRecordings();
     }
 }

@@ -12,12 +12,10 @@ import org.springframework.http.ResponseEntity;
 import org.springframework.stereotype.Service;
 import org.springframework.transaction.annotation.Transactional;
 import org.springframework.web.servlet.mvc.method.annotation.StreamingResponseBody;
-
 import java.sql.Blob;
 import java.sql.SQLException;
 import java.util.List;
 import java.util.Optional;
-import java.util.Set;
 import java.util.stream.Collectors;
 
 @Service
@@ -33,8 +31,13 @@ public class ServiceAudioRecordingsImpl implements ServiceAudioRecordings {
     }
 
     @Override
-    public Set<AudioRecording> getFeaturedAudioRecordings() {
-        return repositoryAudioRecordings.findFeatured();
+    public ResponseEntity<List<DtoAudioRecording>> getFeaturedAudioRecordings() {
+        return ResponseEntity.ok(
+                repositoryAudioRecordings.findFeatured()
+                        .stream()
+                        .map(AudioRecordingConverter::toDto)
+                        .toList()
+        );
     }
 
     @Override
@@ -50,11 +53,19 @@ public class ServiceAudioRecordingsImpl implements ServiceAudioRecordings {
     }
 
     @Override
-    public boolean saveAudioRecording(DtoAudioRecording dtoAudioRecording) {
+    public void saveAudioRecording(DtoAudioRecording dtoAudioRecording) {
         AudioRecording audioRecording = AudioRecordingConverter.toAudioRecording(dtoAudioRecording);
         repositoryAudioRecordings.save(audioRecording);
-        return true;
     }
+
+    @Override
+    public ResponseEntity<List<DtoAudioRecording>> getAllDtoAudioRecordings() {
+        List<DtoAudioRecording> dtoAudioRecordings = getAllAudioRecordings().stream()
+                .map(AudioRecordingConverter::toDto)
+                .collect(Collectors.toList());
+        return ResponseEntity.ok(dtoAudioRecordings);
+    }
+
 
     private HttpHeaders setUpHttpHeaders(Blob audioBlob) {
         HttpHeaders headers = new HttpHeaders();
@@ -65,13 +76,5 @@ public class ServiceAudioRecordingsImpl implements ServiceAudioRecordings {
             throw new RuntimeException(e);
         }
         return headers;
-    }
-
-    @Override
-    public ResponseEntity<List<DtoAudioRecording>> getAllDtoAudioRecordings() {
-        List<DtoAudioRecording> dtoAudioRecordings = getAllAudioRecordings().stream()
-                .map(AudioRecordingConverter::toDto)
-                .collect(Collectors.toList());
-        return ResponseEntity.ok(dtoAudioRecordings);
     }
 }
