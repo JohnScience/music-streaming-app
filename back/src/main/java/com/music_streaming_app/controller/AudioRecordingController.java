@@ -24,6 +24,7 @@ public class AudioRecordingController {
 
     @PostMapping(value = "/save", consumes = MediaType.MULTIPART_FORM_DATA_VALUE)
     public ResponseEntity<String> saveAudioRecording(@ModelAttribute DtoAudioRecording dtoAudioRecording) {
+        logger.info("AudioRecordingController saveAudioRecording start: dtoAudioRecording = " + dtoAudioRecording.toString());
         logger.info("Post dto: " + dtoAudioRecording.toString());
         serviceAudioRecordings.saveAudioRecording(dtoAudioRecording);
         return ResponseEntity.ok("Audio recording is saved successfully");
@@ -31,17 +32,20 @@ public class AudioRecordingController {
 
     @GetMapping("/{id}")
     public ResponseEntity<StreamingResponseBody> getAudioRecording(@PathVariable Long id) {
+        logger.info("AudioRecordingController getAudioRecording start: id = " + id);
         return serviceAudioRecordings.getAudioRecordingById(id);
     }
 
     @GetMapping("/all")
     public ResponseEntity<List<DtoAudioRecording>> getAllAudioRecordings() {
+        logger.info("AudioRecordingController getAllAudioRecordings start");
         return serviceAudioRecordings.getAllDtoAudioRecordings();
     }
 
     @Operation(summary = "Получаем рекомендуемые записи из БД")
     @GetMapping("/featured")
     public ResponseEntity<List<DtoAudioRecording>> getFeaturedAudioRecordings() {
+        logger.info("AudioRecordingController getFeaturedAudioRecordings start");
         return serviceAudioRecordings.getFeaturedAudioRecordings();
     }
 }
