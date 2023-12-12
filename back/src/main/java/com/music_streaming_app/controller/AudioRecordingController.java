@@ -25,6 +25,7 @@ public class AudioRecordingController {
     @PostMapping(value = "/save", consumes = MediaType.MULTIPART_FORM_DATA_VALUE)
     public ResponseEntity<String> saveAudioRecording(@ModelAttribute DtoAudioRecording dtoAudioRecording) {
         logger.info("AudioRecordingController saveAudioRecording start: dtoAudioRecording = " + dtoAudioRecording.toString());
+        logger.info("Post dto: " + dtoAudioRecording.toString());
         serviceAudioRecordings.saveAudioRecording(dtoAudioRecording);
         return ResponseEntity.ok("Audio recording is saved successfully");
     }
