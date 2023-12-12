@@ -1,65 +1,15 @@
 
-.component {
-    display: flex;   
-    background-color: #252020;
-    width: 100%;
-    color: #bab6b6; 
-    max-width: 900px;
-    margin: 1rem auto;
-    justify-content: space-around; 
-    border: 1px solid #212121;
-    border-radius: 5px;
-    align-items: center ; 
-    
-  }
-  .active{
-    display: flex;   
-    background-color: #343334;
-    width: 101%;
-    color: #9c088e;
-    max-width: 900px;
-    margin: 1rem auto;
-     justify-content: space-around; 
-    border: 1px solid #212121;
-    border-radius: 5px;
-    box-shadow: 0 0 5px 2px #E283D2 ;
-     align-items: center; 
-     
-  }
-  .component_id{
-    display: flex;
-    justify-content: flex-start;
-  }
-  
-
-  .component_title {
-    display: flex;
-    justify-content: flex-start;
-    width: 40%;
-    }
+ 
   
   .component_image {
       border-radius: 50%;
       height: 3rem;
     box-shadow: 0 0 2px 2px #9c088e;
   }
- .component_button:hover{
-  cursor: pointer;
-}
 
-.play{
-  display: flex;
-}
- .play1{
-  padding-right: 2rem;
- }
 
- 
- button.round {
-    background-color: #e03e2500; 
-    border: none; 
 
-   }
+
    button.round:hover {
     cursor: pointer;
    }
