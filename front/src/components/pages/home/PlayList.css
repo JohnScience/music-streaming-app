@@ -1,28 +1,28 @@
 
 .component {
     display: flex;   
-    background-color: rgb(30, 24, 24);
+    background-color: #252020;
     width: 100%;
-    color: #d3cece;
+    color: #bab6b6; 
     max-width: 900px;
-    margin: 1em auto;
+    margin: 1rem auto;
     justify-content: space-around; 
-    border: 1px solid rgb(33, 33, 33);
+    border: 1px solid #212121;
     border-radius: 5px;
     align-items: center ; 
     
   }
   .active{
     display: flex;   
-    background-color: #292729;
+    background-color: #343334;
     width: 101%;
     color: #9c088e;
     max-width: 900px;
-    margin: 1em auto;
+    margin: 1rem auto;
      justify-content: space-around; 
-    border: 1px solid rgb(33,33,33);
+    border: 1px solid #212121;
     border-radius: 5px;
-    box-shadow: 0 0 5px 2px rgb(226, 131, 210);
+    box-shadow: 0 0 5px 2px #E283D2 ;
      align-items: center; 
      
   }
@@ -37,9 +37,6 @@
     justify-content: flex-start;
     width: 40%;
     }
-  .component_time{
-    width: 15%;
-  }
   
   .component_image {
       border-radius: 50%;
@@ -56,4 +53,13 @@
  .play1{
   padding-right: 2rem;
  }
+
  
+ button.round {
+    background-color: #e03e2500; 
+    border: none; 
+
+   }
+   button.round:hover {
+    cursor: pointer;
+   }

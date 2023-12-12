@@ -8,6 +8,7 @@ import Image3 from  "../home/image_PlayList/3.jpg"
 import "./PlayList.css"
 import React from "react";
 
+
 const  musicList = [
     {
       id: 1,
@@ -15,7 +16,7 @@ const  musicList = [
       title: "Easy on Me",
       artist:
         'Адель',
-        time: 3.36
+        time: 250
     },
     {
       id:2,
@@ -23,7 +24,7 @@ const  musicList = [
       title: 'Heat Waves',
       artist:
         'Glass Animals',
-      time: 4.36
+      time: 210
     },
     {
       id:3,
@@ -31,17 +32,17 @@ const  musicList = [
       title: 'Break My',
       artist:
         'Бейонсе',
-      time: 4.56
+      time: 260
     },]
 
     export default function PlayList () {
         const [isPlaying, setIsPlaying] = useState(false)
         const[activeItem, setActiveItem] = useState(null)
-        const handleClick=(index) =>{
+        const handlePlay=(index) =>{
             setActiveItem(index),
             setIsPlaying(true)
         };
-        const handlePausa = (index) => {
+        const handlePausa = () => {
             if(isPlaying) {
                 setIsPlaying(false)
             } else {
@@ -52,40 +53,41 @@ const  musicList = [
 
         return(
             musicList.map((item, index)=>(
+              <ul >
                 <li className=
                 {activeItem=== index ? "active" : "component"}
                 >
-                    <div className="component_id">
+                  <div className="component_id">
                         <h3>{item.id}</h3>
                     </div>
                     <div>
                         <img className="component_image" src={item.image} />
                     </div>
                     <div className="component_title">
-                        <p className="title">{item.title}</p>
-                        <p>-</p>
-                        <p className="subTitle">{item.artist}</p>
+                        <p>{item.title + " - " + item.artist}</p>
                     </div>
                     <div className="component_time">
-                        {item.time}
+                        {Math.floor(item.time / 60) + ':' + item.time % 60}
                     </div>
                     <div className="component_button">
                         {activeItem === index && isPlaying ? (
                             <div className="play">
                                 <div className="play1">
-                                <input type="image" src={Playing} ></input>
+                                 <img src={Playing} />
                                 </div>
-                                <input type="image" src={Pausa} onClick={()=> handlePausa(index)}></input>
+                                <button className="round" onClick={()=> handlePausa()} >
+                             <img src={Pausa} width="22" height="22" />
+                          </button>
                            </div>
                         ) : (
-                            
-                            <input 
-                            type="image" src={Play} onClick={()=> handleClick(index)}></input>
-                            
+                          <button className="round" onClick={()=> handlePlay(index)} >
+                             <img src={Play} width="22" height="22" />
+                          </button>
                         )
                          }
                     </div>
                 </li>
+                </ul>
             ))
         )
     }
