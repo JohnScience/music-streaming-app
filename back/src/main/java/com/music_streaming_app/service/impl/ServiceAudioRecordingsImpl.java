@@ -1,19 +1,22 @@
 package com.music_streaming_app.service.impl;
 
+import com.music_streaming_app.converter.AudioRecordingConverter;
 import com.music_streaming_app.dto.DtoAudioRecording;
 import com.music_streaming_app.entity.AudioRecording;
 import com.music_streaming_app.repository.RepositoryAudioRecordings;
 import com.music_streaming_app.service.ServiceAudioRecordings;
 import lombok.RequiredArgsConstructor;
+import org.springframework.http.HttpHeaders;
+import org.springframework.http.MediaType;
+import org.springframework.http.ResponseEntity;
 import org.springframework.stereotype.Service;
 import org.springframework.transaction.annotation.Transactional;
-
-import javax.sql.rowset.serial.SerialBlob;
-import java.io.IOException;
+import org.springframework.web.servlet.mvc.method.annotation.StreamingResponseBody;
+import java.sql.Blob;
 import java.sql.SQLException;
 import java.util.List;
 import java.util.Optional;
-import java.util.Set;
+import java.util.stream.Collectors;
 
 @Service
 @RequiredArgsConstructor
@@ -28,30 +31,50 @@ public class ServiceAudioRecordingsImpl implements ServiceAudioRecordings {
     }
 
     @Override
-    public Set<AudioRecording> getFeaturedAudioRecordings() {
-        return repositoryAudioRecordings.findFeatured();
+    public ResponseEntity<List<DtoAudioRecording>> getFeaturedAudioRecordings() {
+        return ResponseEntity.ok(
+                repositoryAudioRecordings.findFeatured()
+                        .stream()
+                        .map(AudioRecordingConverter::toDto)
+                        .toList()
+        );
     }
 
     @Override
-    public Optional<AudioRecording> getAudioRecordingById(Long id) {
-        return Optional.of(repositoryAudioRecordings.getReferenceById(id));
+    public ResponseEntity<StreamingResponseBody> getAudioRecordingById(Long id) {
+        Optional<AudioRecording> audioRecordingOptional =
+                Optional.of(repositoryAudioRecordings.getReferenceById(id));
+        Blob audioBlob = audioRecordingOptional.get().getAudioBlob();
+        StreamingResponseBody responseBody = AudioRecordingConverter.toStreamingResponseBody(audioBlob);
+        HttpHeaders headers = setUpHttpHeaders(audioBlob);
+        return ResponseEntity.ok()
+                .headers(headers)
+                .body(responseBody);
     }
 
     @Override
-    @Transactional
-    public boolean saveAudioRecording(DtoAudioRecording dtoAudioRecording) {
-        AudioRecording audioRecording;
+    public void saveAudioRecording(DtoAudioRecording dtoAudioRecording) {
+        AudioRecording audioRecording = AudioRecordingConverter.toAudioRecording(dtoAudioRecording);
+        repositoryAudioRecordings.save(audioRecording);
+    }
+
+    @Override
+    public ResponseEntity<List<DtoAudioRecording>> getAllDtoAudioRecordings() {
+        List<DtoAudioRecording> dtoAudioRecordings = getAllAudioRecordings().stream()
+                .map(AudioRecordingConverter::toDto)
+                .collect(Collectors.toList());
+        return ResponseEntity.ok(dtoAudioRecordings);
+    }
+
+
+    private HttpHeaders setUpHttpHeaders(Blob audioBlob) {
+        HttpHeaders headers = new HttpHeaders();
+        headers.setContentType(MediaType.APPLICATION_OCTET_STREAM);
         try {
-            audioRecording = AudioRecording.builder()
-                    .audioBlob(new SerialBlob(dtoAudioRecording.getFile().getBytes()))
-//                    .author(dtoAudioRecording.getArtist())
-                    .description(dtoAudioRecording.getDescription())
-                    .sourceUrl(dtoAudioRecording.getSourceUrl()).build();
-        } catch (SQLException | IOException e) {
+            headers.setContentLength((int) audioBlob.length());
+        } catch (SQLException e) {
             throw new RuntimeException(e);
         }
-
-        repositoryAudioRecordings.save(audioRecording);
-        return true;
+        return headers;
     }
 }
