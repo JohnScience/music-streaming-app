@@ -4,7 +4,7 @@ import React from 'react'
 import { Link } from 'react-router-dom'
 import SearchPanel from '../components/pages/home/SearchPanel'
 import GenreList from '../components/pages/home/GenreList'
-import PlayList from '../components/pages/home/PlayList'
+import PlayList from '../components/PlayList/PlayList'
 import styled from 'styled-components'
 
 

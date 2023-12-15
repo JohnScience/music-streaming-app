@@ -1,8 +1,8 @@
 import React from "react";
 import { styled }  from "styled-components"
-import Pausa from "../home/assets/Pausa.svg"
-import Play from "../home/assets/Play.svg"
-import Playing from "../home/assets/Playing.svg"
+import Pausa from "./assets/Pausa.svg"
+import Play from "./assets/Play.svg"
+import Playing from "./assets/Playing.svg"
 import { useState } from "react";
 
 const Li = styled.li`
@@ -17,8 +17,6 @@ border:${({$invalid})=> $invalid ? `1px solid #212121` : `1px solid #212121`};
 border-radius: 5px;
 align-items: center ;
 box-shadow:${({$invalid})=> $invalid ? `0 0 5px 2px #E283D2` : `none`}  ;
-    
-   
 `
 
 const Button = styled.button`
@@ -48,11 +46,22 @@ display: flex;
 const ButtonPausa = styled.div`
 padding-right: 2rem;
 `
+interface TrackOne {
+    id: number;
+    title: string;
+    onPausa: ()=> void;
+    time: number ;
+    artist: string ;
+    image:  string;
+    onPlay: (id:number)=> void ; 
+    activeItem: number | null ; 
+    isPlaying: boolean ; 
+   
+}
 
+ const Track: React.FC<TrackOne> = ( {
+    onPausa, id, time,title,artist, image, onPlay, activeItem, isPlaying}) => {
 
- export default function Treck ( {onPausa, id, time,title,artist, image, onPlay, activeItem, isPlaying}) {
-
-    
     return(
         <Li key={id} 
         $invalid = {activeItem === id}>
@@ -90,3 +99,4 @@ padding-right: 2rem;
             
     )
  }
+ export default Track

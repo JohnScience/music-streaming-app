@@ -1,14 +1,20 @@
 import { useState } from "react";
-import Image1 from "../home/assets/1.jpg"
-import Image2 from  "../home/assets/2.jpg"
-import Image3 from  "../home/assets/3.jpg"
+import Image1 from "./assets/1.jpg"
+import Image2 from  "./assets/2.jpg"
+import Image3 from  "./assets/3.jpg"
 import React from "react";
-import { styled }  from "styled-components"
-import Treck from "./Treck";
+import Track from "./Track";
  
 
-
-const  musicList = [
+interface MmusicList {
+  id: number;
+  image:  string; 
+  title: string;
+  time: number ;
+  artist: string ;
+  
+}
+const  musicList: MmusicList[] = [
     {
       id: 1,
       image: Image1,
@@ -34,10 +40,10 @@ const  musicList = [
       time: 260
     },]
 
-    export default function PlayList () {
+   const PlayList = () => {
         const [isPlaying, setIsPlaying] = useState(false)
         const[activeItem, setActiveItem] = useState(null)
-        const handlePlay=(index) =>{
+        const handlePlay=(index: number | null) =>{
             setActiveItem(index),
             setIsPlaying(true)
         };
@@ -53,7 +59,7 @@ const  musicList = [
         return(
           <ul>
             {musicList.map((item)=>(
-              <Treck 
+              <Track 
               id={item.id}
               artist={item.artist}
               time={item.time}
@@ -69,3 +75,5 @@ const  musicList = [
           </ul>
         )
     }
+
+    export default PlayList
