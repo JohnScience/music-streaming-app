@@ -3,14 +3,18 @@ import { styled }  from "styled-components"
 import Pausa from "./assets/Pausa.svg"
 import Play from "./assets/Play.svg"
 import Playing from "./assets/Playing.svg"
-import { useState } from "react";
+
+
 
 const Li = styled.li`
 display: flex;   
-background-color: #252020;
-width: 100%;
+background-color: #1a1918;
+width: 95%;
+font-weight: bold;
+font-size: 1.1rem ;
 color: ${({$invalid})=> $invalid ? `#9c088e` : `#bab6b6`}; 
-max-width: 900px;
+max-width: 59.4rems;
+padding: 0.8rem;
 margin: 1rem auto;
 justify-content: space-around; 
 border:${({$invalid})=> $invalid ? `1px solid #212121` : `1px solid #212121`};
@@ -31,12 +35,12 @@ background-color: #e03e2500;
 const Title = styled.div`
 display: flex;
     justify-content: flex-start;
-    width: 40%;
+    width: 50%;
 `
 const Image = styled.div`
 img{
-border-radius: 50%;
-      height: 3rem;
+border-radius: 55%;
+      height: 3.8rem;
     box-shadow: 0 0 2px 2px #9c088e;
   }
 `
@@ -46,7 +50,7 @@ display: flex;
 const ButtonPausa = styled.div`
 padding-right: 2rem;
 `
-interface TrackOne {
+interface TrackProps {
     id: number;
     title: string;
     onPausa: ()=> void;
@@ -59,10 +63,11 @@ interface TrackOne {
    
 }
 
- const Track: React.FC<TrackOne> = ( {
+ const Track: React.FC<TrackProps> = ( {
     onPausa, id, time,title,artist, image, onPlay, activeItem, isPlaying}) => {
 
     return(
+        
         <Li key={id} 
         $invalid = {activeItem === id}>
                   <div >
