@@ -1,0 +1,13 @@
+name: deploy-latest-changes
+
+on:
+  push:
+    branches:
+      - main
+jobs:
+  deploy:
+    runs-on: ubuntu-latest
+
+    steps:
+      - name: Deploy to server
+        run: curl -X GET http://audio-player.ru:8089/deploy
