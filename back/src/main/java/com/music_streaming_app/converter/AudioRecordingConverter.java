@@ -13,9 +13,6 @@ import java.sql.SQLException;
 
 @Component
 public class AudioRecordingConverter {
-    private AudioRecordingConverter() {
-
-    }
 
     public static DtoAudioRecording toDto(AudioRecording ar) {
         return DtoAudioRecording.builder()

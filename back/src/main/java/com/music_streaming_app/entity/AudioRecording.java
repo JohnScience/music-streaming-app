@@ -50,5 +50,4 @@ public class AudioRecording {
     @Lob
     @Column(name = "thumbnail")
     private Blob thumbnail;
-
 }
