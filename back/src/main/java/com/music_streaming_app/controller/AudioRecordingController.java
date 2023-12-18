@@ -15,14 +15,14 @@ import java.util.List;
 
 @RestController
 @RequiredArgsConstructor
-@RequestMapping("api/v1/audio_recording")
+@RequestMapping("api/v1/audio_recordings")
 public class AudioRecordingController {
 
     private static final Logger logger = LoggerFactory.getLogger(AudioRecordingController.class);
 
     private final ServiceAudioRecordings serviceAudioRecordings;
 
-    @PostMapping(value = "/save", consumes = MediaType.MULTIPART_FORM_DATA_VALUE)
+    @PostMapping(consumes = MediaType.MULTIPART_FORM_DATA_VALUE)
     public ResponseEntity<String> saveAudioRecording(@ModelAttribute DtoAudioRecording dtoAudioRecording) {
         logger.info("AudioRecordingController saveAudioRecording start: dtoAudioRecording = " + dtoAudioRecording.toString());
         logger.info("Post dto: " + dtoAudioRecording.toString());
@@ -36,7 +36,7 @@ public class AudioRecordingController {
         return serviceAudioRecordings.getAudioRecordingById(id);
     }
 
-    @GetMapping("/all")
+    @GetMapping
     public ResponseEntity<List<DtoAudioRecording>> getAllAudioRecordings() {
         logger.info("AudioRecordingController getAllAudioRecordings start");
         return serviceAudioRecordings.getAllDtoAudioRecordings();
