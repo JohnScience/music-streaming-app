@@ -15,7 +15,7 @@ import java.time.LocalDateTime;
 @Builder
 @AllArgsConstructor
 @NoArgsConstructor
-@Table(name = "Track")
+@Table(name = "Tracks")
 public class Track {
 
     @Id
@@ -33,7 +33,7 @@ public class Track {
     private String sourceUrl;
 
     @Column(name = "duration_secs", nullable = false)
-    private int durationSecs;
+    private Integer durationSecs;
 
     @CreationTimestamp
     @Column(name = "created_at", nullable = false)
