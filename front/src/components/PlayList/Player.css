@@ -1,0 +1,64 @@
+
+.component {
+    display: flex;   
+    background-color: rgb(30, 24, 24);
+    width: 90%;
+    color: #d3cece;
+    max-width: 1400px;
+    margin: 1em auto;
+    justify-content: space-around; 
+    border: 1px solid rgb(33, 33, 33);
+    border-radius: 5px;
+    align-items: center ; 
+    
+  }
+  .active{
+    display: flex;   
+    background-color: #292729;
+    width: 71%;
+    color: #9c088e;
+    max-width: 900px;
+    margin: 1em auto;
+     justify-content: space-around; 
+    border: 1px solid rgb(33,33,33);
+    border-radius: 5px;
+    box-shadow: 0 0 5px 2px rgb(226, 131, 210);
+     align-items: center; 
+     
+  }
+  .component_id{
+    display: flex;
+    justify-content: flex-start;
+  }
+  
+
+  .component_title {
+    display: flex;
+    justify-content: flex-start;
+    width: 40%;
+    }
+  .component_time{
+    display: flex;
+    width: 15%;
+  }
+  
+  .musicCover {
+	  border-radius: 50%;
+	  height: 3rem;
+    box-shadow: 0 0 2px 2px #9c088e;
+  }
+.button:hover{
+  cursor: pointer;
+}
+.play{
+  display: flex;
+}
+ .play1{
+  padding-right: 2rem;
+ }
+  
+  @media (max-width: 900px) {
+    .component {
+      width: 50%;
+    }
+  }

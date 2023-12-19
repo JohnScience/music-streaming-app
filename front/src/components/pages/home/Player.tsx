@@ -1,10 +1,11 @@
 import React from 'react'
 import img from './Player.png'
+import Player1 from '../../PlayList/Player'
 import styled from 'styled-components'
 const Player: React.FC = () => {
   return (
     <MainPlayer>
-      <img src={img} alt='' />
+      <Player1/>
     </MainPlayer>
   )
 }
@@ -12,3 +13,5 @@ const Player: React.FC = () => {
 export default Player
 
 const MainPlayer = styled.div``
+
+

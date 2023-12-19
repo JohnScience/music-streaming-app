@@ -1,12 +1,13 @@
-import { useState } from "react";
+import { useEffect, useState } from "react";
 import Image1 from "./assets/1.jpg"
 import Image2 from  "./assets/2.jpg"
 import Image3 from  "./assets/3.jpg"
 import React from "react";
 import Track from "./Track";
 import {styled} from "styled-components";
+import axios from "axios"
  
-
+const src = "https://reqres.in/api/users?page=1"
 interface TrackDescription {
   id: number;
   image:  string; 
@@ -100,9 +101,20 @@ width: 100%;
  height: 41.6rem;
  
   `
-
+ 
+  
   
    const PlayList = () => {
+    const [articles, setArticles] = useState([])
+    useEffect(() => {
+      axios
+         .get(src)
+         .then(data =>{
+            console.log(data.data.data)
+         })
+    }, [])
+
+
         const [isPlaying, setIsPlaying] = useState(false)
         const[activeItem, setActiveItem] = useState(null)
         const handlePlay=(index: number | null) =>{
