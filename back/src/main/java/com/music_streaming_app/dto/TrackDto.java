@@ -11,7 +11,7 @@ import org.springframework.web.multipart.MultipartFile;
 @Builder
 @AllArgsConstructor
 @NoArgsConstructor
-public class DtoAudioRecording {
+public class TrackDto {
     private Long id;
     private MultipartFile file;
     private Artist artist;

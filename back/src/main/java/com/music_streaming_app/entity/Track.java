@@ -15,8 +15,8 @@ import java.time.LocalDateTime;
 @Builder
 @AllArgsConstructor
 @NoArgsConstructor
-@Table(name = "audio_recordings")
-public class AudioRecording {
+@Table(name = "Track")
+public class Track {
 
     @Id
     @Column(name = "id")

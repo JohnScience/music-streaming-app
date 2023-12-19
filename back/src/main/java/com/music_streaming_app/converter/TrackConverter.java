@@ -1,7 +1,7 @@
 package com.music_streaming_app.converter;
 
-import com.music_streaming_app.dto.DtoAudioRecording;
-import com.music_streaming_app.entity.AudioRecording;
+import com.music_streaming_app.dto.TrackDto;
+import com.music_streaming_app.entity.Track;
 import org.springframework.stereotype.Component;
 import org.springframework.web.servlet.mvc.method.annotation.StreamingResponseBody;
 
@@ -12,10 +12,10 @@ import java.sql.Blob;
 import java.sql.SQLException;
 
 @Component
-public class AudioRecordingConverter {
+public class TrackConverter {
 
-    public static DtoAudioRecording toDto(AudioRecording ar) {
-        return DtoAudioRecording.builder()
+    public static TrackDto toTrackDto(Track ar) {
+        return TrackDto.builder()
                 .id(ar.getId())
                 .artist(ar.getArtist())
                 .description(ar.getDescription())
@@ -39,18 +39,18 @@ public class AudioRecordingConverter {
         return responseBody;
     }
 
-    public static AudioRecording toAudioRecording(DtoAudioRecording dtoAudioRecording) {
-        AudioRecording audioRecording;
+    public static Track toTrack(TrackDto trackDto) {
+        Track track;
         try {
-            audioRecording = AudioRecording.builder()
-                    .audioBlob(new SerialBlob(dtoAudioRecording.getFile().getBytes()))
-                    .artist(dtoAudioRecording.getArtist())
-                    .description(dtoAudioRecording.getDescription())
-                    .sourceUrl(dtoAudioRecording.getSourceUrl())
+            track = Track.builder()
+                    .audioBlob(new SerialBlob(trackDto.getFile().getBytes()))
+                    .artist(trackDto.getArtist())
+                    .description(trackDto.getDescription())
+                    .sourceUrl(trackDto.getSourceUrl())
                     .build();
         } catch (SQLException | IOException e) {
             throw new RuntimeException(e);
         }
-        return audioRecording;
+        return track;
     }
 }
