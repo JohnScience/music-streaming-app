@@ -70,7 +70,6 @@ public class TrackServiceImpl implements TrackService {
         return ResponseEntity.ok(trackDtos);
     }
 
-
     private HttpHeaders setUpHttpHeaders(Blob audioBlob) {
         HttpHeaders headers = new HttpHeaders();
         headers.setContentType(MediaType.APPLICATION_OCTET_STREAM);

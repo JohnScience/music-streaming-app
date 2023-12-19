@@ -5,16 +5,23 @@ import lombok.AllArgsConstructor;
 import lombok.Builder;
 import lombok.Data;
 import lombok.NoArgsConstructor;
-import org.springframework.web.multipart.MultipartFile;
+
+import java.sql.Blob;
+import java.time.LocalDateTime;
 
 @Data
 @Builder
 @AllArgsConstructor
 @NoArgsConstructor
 public class TrackDto {
+
     private Long id;
-    private MultipartFile file;
+    private String title;
     private Artist artist;
     private String description;
     private String sourceUrl;
+    private int durationSecs;
+    private LocalDateTime createdAt;
+    private Blob audioBlob;
+    private Blob cover;
 }

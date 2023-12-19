@@ -26,10 +26,6 @@ public class Track {
     @Column(name = "title", nullable = false)
     private String title;
 
-    @ManyToOne
-    @JoinColumn(name = "artist_id")
-    private Artist artist;
-
     @Column(name = "description")
     private String description;
 
@@ -48,6 +44,10 @@ public class Track {
     private Blob audioBlob;
 
     @Lob
-    @Column(name = "thumbnail")
-    private Blob thumbnail;
+    @Column(name = "cover")
+    private Blob cover;
+
+    @ManyToOne
+    @JoinColumn(name = "artist_id")
+    private Artist artist;
 }
