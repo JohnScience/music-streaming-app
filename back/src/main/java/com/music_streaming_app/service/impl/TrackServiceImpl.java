@@ -14,6 +14,7 @@ import org.springframework.http.ResponseEntity;
 import org.springframework.stereotype.Service;
 import org.springframework.transaction.annotation.Transactional;
 import org.springframework.web.servlet.mvc.method.annotation.StreamingResponseBody;
+
 import java.sql.Blob;
 import java.sql.SQLException;
 import java.util.List;
@@ -35,19 +36,6 @@ public class TrackServiceImpl implements TrackService {
         List<Track> tracks = trackRepository.findAll();
         logger.info("TrackTrackServiceImpl getAllTracks end");
         return tracks;
-    }
-
-    @Override
-    public ResponseEntity<List<TrackDto>> getFeaturedTracks() {
-        logger.info("TrackTrackServiceImpl getFeaturedTracks start");
-        ResponseEntity<List<TrackDto>> responseEntity = ResponseEntity.ok(
-                trackRepository.findFeatured()
-                        .stream()
-                        .map(TrackConverter::toTrackDto)
-                        .toList()
-        );
-        logger.info("TrackTrackServiceImpl getFeaturedTracks end");
-        return responseEntity;
     }
 
     @Override

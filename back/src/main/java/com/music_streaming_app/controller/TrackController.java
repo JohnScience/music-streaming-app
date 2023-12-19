@@ -2,7 +2,6 @@ package com.music_streaming_app.controller;
 
 import com.music_streaming_app.dto.TrackDto;
 import com.music_streaming_app.service.TrackService;
-import io.swagger.v3.oas.annotations.Operation;
 import lombok.RequiredArgsConstructor;
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
@@ -40,12 +39,5 @@ public class TrackController {
     public ResponseEntity<List<TrackDto>> getAllTracks() {
         logger.info("TrackController getAllTracks start");
         return trackService.getAllTrackDto();
-    }
-
-    @Operation(summary = "Получаем рекомендуемые записи из БД")
-    @GetMapping("/featured")
-    public ResponseEntity<List<TrackDto>> getFeaturedTracks() {
-        logger.info("TrackController getFeaturedTracks start");
-        return trackService.getFeaturedTracks();
     }
 }

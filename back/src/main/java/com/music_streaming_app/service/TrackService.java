@@ -11,8 +11,6 @@ public interface TrackService {
 
     List<Track> getAllTracks();
 
-    ResponseEntity<List<TrackDto>> getFeaturedTracks();
-
     ResponseEntity<StreamingResponseBody> getTrackById(Long id);
 
     void saveTrack(TrackDto trackDto);
