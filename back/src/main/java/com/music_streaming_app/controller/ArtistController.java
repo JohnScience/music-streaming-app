@@ -15,7 +15,7 @@ import java.util.List;
 @RequestMapping("api/v1/artists")
 public class ArtistController {
 
-    private static final Logger logger = LoggerFactory.getLogger(TrackController.class);
+    private static final Logger logger = LoggerFactory.getLogger(ArtistController.class);
 
     private final ArtistService artistService;
 

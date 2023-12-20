@@ -50,4 +50,8 @@ public class Track {
     @ManyToOne
     @JoinColumn(name = "artist_id")
     private Artist artist;
+
+    @ManyToOne
+    @JoinColumn(name = "genre_id")
+    private Genre genre;
 }

@@ -21,7 +21,7 @@ import java.util.Optional;
 @Transactional(readOnly = true)
 public class ArtistServiceImpl implements ArtistService {
 
-    private static final Logger logger = LoggerFactory.getLogger(TrackServiceImpl.class);
+    private static final Logger logger = LoggerFactory.getLogger(ArtistServiceImpl.class);
 
     private final ArtistRepository artistRepository;
     private final ArtistMapper artistMapper;
