@@ -3,6 +3,7 @@ import { styled }  from "styled-components"
 import Pausa from "./assets/Pausa.svg"
 import Play from "./assets/Play.svg"
 import Playing from "./assets/Playing.svg"
+import Player1 from "./Player1";
 
 
 
@@ -51,6 +52,7 @@ const ButtonPausa = styled.div`
 padding-right: 2rem;
 `
 interface TrackProps {
+   
     id: number;
     title: string;
     onPausa: ()=> void;
@@ -64,7 +66,7 @@ interface TrackProps {
 }
 
  const Track: React.FC<TrackProps> = ( {
-    onPausa, id, time,title,artist, image, onPlay, activeItem, isPlaying}) => {
+    onPausa, id,  time,title,artist, image, onPlay, activeItem, isPlaying}) => {
 
     return(
         
@@ -85,6 +87,7 @@ interface TrackProps {
                     </div>
                     <div>
                         {activeItem === id && isPlaying ? (
+                            
                             <ButtonPlay>
                                 <ButtonPausa >
                                  <img src={Playing} />
@@ -93,6 +96,8 @@ interface TrackProps {
                              <img src={Pausa} width="22" height="22" />
                           </Button>
                            </ButtonPlay>
+                           
+                           
                         ) : (
                           <Button  onClick={()=>onPlay(id)} >
                              <img src={Play} width="22" height="22" />
