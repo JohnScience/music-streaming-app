@@ -8,6 +8,7 @@ import sound from "./assets/Lesa FS - Между нами.mp3"
 import Track from "./Track";
 import {styled} from "styled-components";
 import axios from "axios"
+import Player1 from "./Player";
  
 const src = "https://reqres.in/api/users?page=1"
 interface TrackDescription {
@@ -111,8 +112,7 @@ width: 100%;
  height: 41.6rem;
  
   `
- 
-  
+
   
    const PlayList = () => {
     const [articles, setArticles] = useState([])
@@ -141,11 +141,12 @@ width: 100%;
           
 
         return(
+          <>
           <CustomScrollbar>
             <Ul>
             {musicList.map((item)=>(
               <Track 
-              
+              key={item.title} 
               id={item.id}
               artist={item.artist}
               time={item.time}
@@ -156,10 +157,11 @@ width: 100%;
               activeItem={activeItem}
               isPlaying={isPlaying}
               />
-             
             ))}
-            </Ul>
+            </Ul> 
+           
           </CustomScrollbar>
+          </>
         )
     }
 

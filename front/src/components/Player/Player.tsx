@@ -1,11 +1,11 @@
 import { useEffect, useState, useRef } from "react";
-import gala from "./assets/Melanie Martinez - Cake.mp3";
+import gala from "../PlayList/assets/Melanie Martinez - Cake.mp3";
 import { styled }  from "styled-components"
 import React from "react";
-import Pausa from "./assets/Pausa 2.svg"
-import Volume from "./assets/Group (1).svg"
-import Play from "./assets/Play.svg"
-import imageMusic from "./assets/images.jpg"
+import Pausa from "../PlayList/assets/Pausa 2.svg"
+import Volume from "../PlayList/assets/Group (1).svg"
+import Play from "../PlayList/assets/Play.svg"
+import imageMusic from "../PlayList/assets/images.jpg"
 
 const Button = styled.button`
 background-color: #e03e2500; 
@@ -63,6 +63,7 @@ input[type=range] {
   -webkit-appearance: none;
   margin: 10px 0;
   width: 400px;
+  background-color: #1a1918;
 }
 input[type=range]:focus {
   outline: none;
@@ -147,15 +148,17 @@ input[type=range]:focus::-ms-fill-lower {
 input[type=range]:focus::-ms-fill-upper {
   background: #b6b6b6;
 }
-Навигация по записям
-
+input[type="range"]::-moz-range-progress {
+  background-color: #212121; 
+}
 `
 const InputSliderVolume = styled.div`
 input[type=range] {
   height: 10px;
   -webkit-appearance: none;
   margin: 10px 0;
-  width: 100px;
+  width: 100%;
+  background-color: #1a1918;
 }
 input[type=range]:focus {
   outline: none;
@@ -165,42 +168,42 @@ input[type=range]::-webkit-slider-runnable-track {
   height: 10px;
   cursor: pointer;
   animate: 0.2s;
-  box-shadow: 2px 2px 5px #353535;
-  background: #a7a5a5;
-  border-radius: 0px;
-  border: 1px solid #504f4c;
+  box-shadow: 0px 0px 0px #504b4b;
+  background: #b6b6b6;
+  border-radius: 12px;
+  border: 0px solid #797875;
 }
 input[type=range]::-webkit-slider-thumb {
-  box-shadow: 1px 1px 1px #3e3e3e;
-  border: 1px solid #5a5852;
+  box-shadow: 2px 2px 1px #353535;
+  border: 1px solid #6c6962;
   height: 15px;
   width: 15px;
-  border-radius: 15px;
-  background: #ce0ddd;
+  border-radius: 27px;
+  background: #f200da;
   cursor: pointer;
   -webkit-appearance: none;
   margin-top: -3px;
 }
 input[type=range]:focus::-webkit-slider-runnable-track {
-  background: #a7a5a5;
+  background: #b6b6b6;
 }
 input[type=range]::-moz-range-track {
   width: 100%;
   height: 10px;
   cursor: pointer;
   animate: 0.2s;
-  box-shadow: 2px 2px 5px #353535;
-  background: #a7a5a5;
-  border-radius: 0px;
-  border: 1px solid #504f4c;
+  box-shadow: 0px 0px 0px #504b4b;
+  background: #b6b6b6;
+  border-radius: 12px;
+  border: 0px solid #797875;
 }
 input[type=range]::-moz-range-thumb {
-  box-shadow: 1px 1px 1px #3e3e3e;
-  border: 1px solid #5a5852;
+  box-shadow: 2px 2px 1px #353535;
+  border: 1px solid #6c6962;
   height: 15px;
   width: 15px;
-  border-radius: 15px;
-  background: #ce0ddd;
+  border-radius: 27px;
+  background: #f200da;
   cursor: pointer;
 }
 input[type=range]::-ms-track {
@@ -213,33 +216,38 @@ input[type=range]::-ms-track {
   color: transparent;
 }
 input[type=range]::-ms-fill-lower {
-  background: #a7a5a5;
-  border: 1px solid #504f4c;
-  border-radius: 15px;
-  box-shadow: 2px 2px 5px #353535;
+  background: #b6b6b6;
+  border: 0px solid #797875;
+  border-radius: 27px;
+  box-shadow: 0px 0px 0px #504b4b;
 }
 input[type=range]::-ms-fill-upper {
-  background: #a7a5a5;
-  border: 1px solid #504f4c;
-  border-radius: 15px;
-  box-shadow: 2px 2px 5px #353535;
+  background: #b6b6b6;
+  border: 0px solid #797875;
+  border-radius: 27px;
+  box-shadow: 0px 0px 0px #504b4b;
 }
 input[type=range]::-ms-thumb {
   margin-top: 1px;
-  box-shadow: 1px 1px 1px #3e3e3e;
-  border: 1px solid #5a5852;
+  box-shadow: 2px 2px 1px #353535;
+  border: 1px solid #6c6962;
   height: 15px;
   width: 15px;
-  border-radius: 15px;
-  background: #ce0ddd;
+  border-radius: 27px;
+  background: #f200da;
   cursor: pointer;
 }
 input[type=range]:focus::-ms-fill-lower {
-  background: #a7a5a5;
+  background: #b6b6b6;
 }
 input[type=range]:focus::-ms-fill-upper {
-  background: #a7a5a5;
+  background: #b6b6b6;
 }
+input[type="range"]::-moz-range-progress {
+  background-color: #43e5f7;
+}
+
+
 `
    interface PlayerDescription {
        audio: any,
@@ -272,51 +280,56 @@ const sound:PlayerDescription = {
   const [play, setPlay] = useState(false)
   const soundRef: React.RefObject<HTMLAudioElement> = useRef<HTMLAudioElement>(null)
   const MAX = 20
-
-  const [seconds, setSeconds] = useState();
-  const duration:number = soundRef.current?.duration;
-  const ct:number =  soundRef.current?.currentTime
-       const [currTime, setCurrTime] = useState({
-         min: "",
-         sec: ""
-       });
-
-       useEffect(() => {
-        const interval = setInterval(() => {
-          if (ct) {
-            setSeconds(ct);
-            const min = Math.floor(ct / 60);
-            const sec = Math.floor(ct % 60);
-            setCurrTime({
-              min,
-              sec
-            });
-          }
-        }, 1000);
-        return () => clearInterval(interval);
-      }, [ct]);
-      
-      //  useEffect(() => {
-      //   if (duration) {
-      //     const sec = duration / 1000;
-      //     const min = Math.floor(sec / 60);
-      //     const secRemain = Math.floor(sec % 60);
-      //     setTime({
-      //       min: min,
-      //       sec: secRemain
-      //     });
-      //   }
-      // }, [play]);
+  
+      const [currentTime, setCurrentTime] = useState(0);
+      const [duration, setDuration] = useState(0);
     
-      
-
-  //    const handleProgress = (e: React.ChangeEvent<HTMLInputElement>): void => {
-      
-  //      const {value} =  e.target;
-  //      const currentTime = value;
-  //      soundRef.current!.currentTime = currentTime;
-       
-  //  }
+      useEffect(() => {
+        if (soundRef.current) {
+          soundRef.current.addEventListener('timeupdate', handleTimeUpdate);
+          soundRef.current.addEventListener('loadedmetadata', handleLoadedMetadata);
+          soundRef.current.addEventListener('ended', handleAudioEnded);
+        }
+    
+        return () => {
+          if (soundRef.current) {
+            soundRef.current.removeEventListener('timeupdate', handleTimeUpdate);
+            soundRef.current.removeEventListener('loadedmetadata', handleLoadedMetadata);
+            soundRef.current.removeEventListener('ended', handleAudioEnded);
+          }
+        };
+      }, []);
+    
+      const handleTimeUpdate = () => {
+        if (soundRef.current) {
+          setCurrentTime(soundRef.current.currentTime);
+        }
+      };
+    
+      const handleLoadedMetadata = () => {
+        if (soundRef.current) {
+          setDuration(soundRef.current.duration);
+        }
+      };
+    
+      const handleAudioEnded = () => {
+        // Handle the audio ending, e.g., play the next track
+      };
+    
+      const handleSeek = (event: React.ChangeEvent<HTMLInputElement>) => {
+        const newTime = parseFloat(event.target.value);
+        setCurrentTime(newTime);
+        if (soundRef.current) {
+          soundRef.current.currentTime = newTime;
+        }
+      };
+    
+      const formatTime = (time: number) => {
+        const minutes = Math.floor(time / 60);
+        const seconds = Math.floor(time % 60);
+        return `${String(minutes).padStart(2, '0')}:${String(seconds).padStart(2, '0')}`;
+      };
+    
         
      const  handleVolume = (e: React.ChangeEvent<HTMLInputElement>): void =>{
         const {value} =  e.target;
@@ -364,23 +377,23 @@ const sound:PlayerDescription = {
             <div>
                 <Time >
                     <p>
-                         {currTime.min}:{currTime.sec}
+                    {`${formatTime(currentTime)}`} 
                     </p>
                      <p>
-                     {Math.floor(sound.time / 60) + ':' + sound.time % 60}
+                     {`${formatTime(duration)}`}
                     </p>
+                    
                 </Time>
              <InputSliderProgress>  
-        <input
+             <input
         type="range"
-        min={seconds}
-        max={Math.floor(sound.time % 60)}
-        default="0"
-        value={ct % 60}
-        onChange={(e) => {
-          ct[e.target.value];
-        }}
-        />
+        min={0}
+        max={duration}
+        value={currentTime}
+        onChange={handleSeek}
+        step={0.1}
+      />
+      
           </InputSliderProgress> 
         </div>
         </FlexBox>

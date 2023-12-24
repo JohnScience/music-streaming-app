@@ -1,11 +1,10 @@
 import React from 'react'
-import img from './Player.png'
-import Player1 from '../../PlayList/Player'
+import Player1 from '../../Player/Player'
 import styled from 'styled-components'
 const Player: React.FC = () => {
   return (
     <MainPlayer>
-      <Player1/>
+      <Player1 />
     </MainPlayer>
   )
 }
