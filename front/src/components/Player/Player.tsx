@@ -57,198 +57,85 @@ padding-right: 2rem;
 color: ${({$invalid})=> $invalid ? `#9c088e` : `#bab6b6`};
 width: 20px;
 `
-const InputSliderProgress = styled.div`
-input[type=range] {
-  height: 10px;
+const InputSliderProgress = styled.input`
+
   -webkit-appearance: none;
-  margin: 10px 0;
-  width: 400px;
-  background-color: #1a1918;
-}
-input[type=range]:focus {
+  width: 500px;
+  height: 6px;
+  background: linear-gradient(to right, #9c088e 0%, #9c088e ${({ value }) => value/2 }%, #bab6b6 ${({ value}) =>value/2}%,  #bab6b6 100%);
   outline: none;
-}
-input[type=range]::-webkit-slider-runnable-track {
-  width: 100%;
-  height: 10px;
-  cursor: pointer;
-  animate: 0.2s;
-  box-shadow: 0px 0px 0px #504b4b;
-  background: #b6b6b6;
-  border-radius: 12px;
-  border: 0px solid #797875;
-}
-input[type=range]::-webkit-slider-thumb {
-  box-shadow: 2px 2px 1px #353535;
-  border: 1px solid #6c6962;
-  height: 15px;
-  width: 15px;
-  border-radius: 27px;
-  background: #f200da;
-  cursor: pointer;
-  -webkit-appearance: none;
-  margin-top: -3px;
-}
-input[type=range]:focus::-webkit-slider-runnable-track {
-  background: #b6b6b6;
-}
-input[type=range]::-moz-range-track {
-  width: 100%;
-  height: 10px;
-  cursor: pointer;
-  animate: 0.2s;
-  box-shadow: 0px 0px 0px #504b4b;
-  background: #b6b6b6;
-  border-radius: 12px;
-  border: 0px solid #797875;
-}
-input[type=range]::-moz-range-thumb {
-  box-shadow: 2px 2px 1px #353535;
-  border: 1px solid #6c6962;
-  height: 15px;
-  width: 15px;
-  border-radius: 27px;
-  background: #f200da;
-  cursor: pointer;
-}
-input[type=range]::-ms-track {
-  width: 100%;
-  height: 10px;
-  cursor: pointer;
-  animate: 0.2s;
-  background: transparent;
-  border-color: transparent;
-  color: transparent;
-}
-input[type=range]::-ms-fill-lower {
-  background: #b6b6b6;
-  border: 0px solid #797875;
-  border-radius: 27px;
-  box-shadow: 0px 0px 0px #504b4b;
-}
-input[type=range]::-ms-fill-upper {
-  background: #b6b6b6;
-  border: 0px solid #797875;
-  border-radius: 27px;
-  box-shadow: 0px 0px 0px #504b4b;
-}
-input[type=range]::-ms-thumb {
-  margin-top: 1px;
-  box-shadow: 2px 2px 1px #353535;
-  border: 1px solid #6c6962;
-  height: 15px;
-  width: 15px;
-  border-radius: 27px;
-  background: #f200da;
-  cursor: pointer;
-}
-input[type=range]:focus::-ms-fill-lower {
-  background: #b6b6b6;
-}
-input[type=range]:focus::-ms-fill-upper {
-  background: #b6b6b6;
-}
-input[type="range"]::-moz-range-progress {
-  background-color: #212121; 
-}
-`
-const InputSliderVolume = styled.div`
-input[type=range] {
-  height: 10px;
-  -webkit-appearance: none;
-  margin: 10px 0;
-  width: 100%;
-  background-color: #1a1918;
-}
-input[type=range]:focus {
-  outline: none;
-}
-input[type=range]::-webkit-slider-runnable-track {
-  width: 100%;
-  height: 10px;
-  cursor: pointer;
-  animate: 0.2s;
-  box-shadow: 0px 0px 0px #504b4b;
-  background: #b6b6b6;
-  border-radius: 12px;
-  border: 0px solid #797875;
-}
-input[type=range]::-webkit-slider-thumb {
-  box-shadow: 2px 2px 1px #353535;
-  border: 1px solid #6c6962;
-  height: 15px;
-  width: 15px;
-  border-radius: 27px;
-  background: #f200da;
-  cursor: pointer;
-  -webkit-appearance: none;
-  margin-top: -3px;
-}
-input[type=range]:focus::-webkit-slider-runnable-track {
-  background: #b6b6b6;
-}
-input[type=range]::-moz-range-track {
-  width: 100%;
-  height: 10px;
-  cursor: pointer;
-  animate: 0.2s;
-  box-shadow: 0px 0px 0px #504b4b;
-  background: #b6b6b6;
-  border-radius: 12px;
-  border: 0px solid #797875;
-}
-input[type=range]::-moz-range-thumb {
-  box-shadow: 2px 2px 1px #353535;
-  border: 1px solid #6c6962;
-  height: 15px;
-  width: 15px;
-  border-radius: 27px;
-  background: #f200da;
-  cursor: pointer;
-}
-input[type=range]::-ms-track {
-  width: 100%;
-  height: 10px;
-  cursor: pointer;
-  animate: 0.2s;
-  background: transparent;
-  border-color: transparent;
-  color: transparent;
-}
-input[type=range]::-ms-fill-lower {
-  background: #b6b6b6;
-  border: 0px solid #797875;
-  border-radius: 27px;
-  box-shadow: 0px 0px 0px #504b4b;
-}
-input[type=range]::-ms-fill-upper {
-  background: #b6b6b6;
-  border: 0px solid #797875;
-  border-radius: 27px;
-  box-shadow: 0px 0px 0px #504b4b;
-}
-input[type=range]::-ms-thumb {
-  margin-top: 1px;
-  box-shadow: 2px 2px 1px #353535;
-  border: 1px solid #6c6962;
-  height: 15px;
-  width: 15px;
-  border-radius: 27px;
-  background: #f200da;
-  cursor: pointer;
-}
-input[type=range]:focus::-ms-fill-lower {
-  background: #b6b6b6;
-}
-input[type=range]:focus::-ms-fill-upper {
-  background: #b6b6b6;
-}
-input[type="range"]::-moz-range-progress {
-  background-color: #43e5f7;
-}
+  opacity: 0.7;
+  -webkit-transition: .2s;
+  transition: opacity .2s;
+  border-radius: 10px;
 
 
+&::-webkit-slider-thumb {
+  /* Стилизация переключателя */
+  -webkit-appearance: none;
+  appearance: none;
+  width: 15px;
+  height: 15px;
+  background: purple;
+  cursor: pointer;
+  border-radius: 50%;
+}
+
+&::-webkit-slider-thumb:hover {
+  /* При наведение курсора на переключатель */
+  background: #800080;
+}
+
+&::-moz-range-thumb {
+  /* Стилизация переключателя для Firefox */
+  width: 15px;
+  height: 15px;
+  background: purple;
+  cursor: pointer;
+  border-radius: 50%;
+}
 `
+const InputSliderVolume =  styled.input`
+
+-webkit-appearance: none;
+width: 100%;
+height: 6px;
+background: linear-gradient(to right, #9c088e 0%, #9c088e ${({ value }) => value }%, #bab6b6 ${({ value}) =>value}%,  #bab6b6 100%);
+outline: none;
+opacity: 0.7;
+-webkit-transition: .2s;
+transition: opacity .2s;
+border-radius: 10px;
+
+
+&::-webkit-slider-thumb {
+/* Стилизация переключателя */
+-webkit-appearance: none;
+appearance: none;
+width: 15px;
+height: 15px;
+background: purple;
+cursor: pointer;
+border-radius: 50%;
+}
+
+&::-webkit-slider-thumb:hover {
+/* При наведение курсора на переключатель */
+background: #800080;
+}
+
+&::-moz-range-thumb {
+/* Стилизация переключателя для Firefox */
+width: 15px;
+height: 15px;
+background: purple;
+cursor: pointer;
+border-radius: 50%;
+}
+`
+
+
+
    interface PlayerDescription {
        audio: any,
        image:  string,
@@ -279,7 +166,7 @@ const sound:PlayerDescription = {
  const  Player1: React.FC<PlayerProps> = ()  => {
   const [play, setPlay] = useState(false)
   const soundRef: React.RefObject<HTMLAudioElement> = useRef<HTMLAudioElement>(null)
-  const MAX = 20
+  const MAX = 100
   
       const [currentTime, setCurrentTime] = useState(0);
       const [duration, setDuration] = useState(0);
@@ -316,12 +203,15 @@ const sound:PlayerDescription = {
         // Handle the audio ending, e.g., play the next track
       };
     
+         const [progress, setProgress] = useState(0);
       const handleSeek = (event: React.ChangeEvent<HTMLInputElement>) => {
         const newTime = parseFloat(event.target.value);
         setCurrentTime(newTime);
         if (soundRef.current) {
           soundRef.current.currentTime = newTime;
         }
+        const newProgress = parseInt(event.target.value);
+           setProgress(newProgress);
       };
     
       const formatTime = (time: number) => {
@@ -330,13 +220,15 @@ const sound:PlayerDescription = {
         return `${String(minutes).padStart(2, '0')}:${String(seconds).padStart(2, '0')}`;
       };
     
-        
+      const [progress1, setProgress1] = useState(0);
      const  handleVolume = (e: React.ChangeEvent<HTMLInputElement>): void =>{
         const {value} =  e.target;
         const volume = Number(value) / MAX;
         if(soundRef.current){
           soundRef.current.volume = volume;
         }
+        const newProgress = parseInt(e.target.value);
+           setProgress1(newProgress);
      }
 
     const  switchingPlayaButton= () => {
@@ -349,7 +241,9 @@ const sound:PlayerDescription = {
           
         }
       };
-    
+      
+      
+       
     return (
         
        <PlayerComponent $invalid = {play}
@@ -384,17 +278,18 @@ const sound:PlayerDescription = {
                     </p>
                     
                 </Time>
-             <InputSliderProgress>  
-             <input
+             
+             <InputSliderProgress
         type="range"
         min={0}
         max={duration}
-        value={currentTime}
         onChange={handleSeek}
         step={0.1}
+        value={progress}
+        
+        
       />
-      
-          </InputSliderProgress> 
+    
         </div>
         </FlexBox>
         <FlexBox>
@@ -402,14 +297,14 @@ const sound:PlayerDescription = {
         >
            <img src={Volume} width="30" height="30"/>
         </ButtonVolume>
-        <InputSliderVolume>
-           <input
+           <InputSliderVolume
               type="range"
-              min={0}
+              min= "0"
               max={MAX}
               onChange={(e) => handleVolume(e)}
-          />
-       </InputSliderVolume>
+              value={progress1}
+          /> 
+      
        </FlexBox>
        <div>
        <audio ref={soundRef} loop src={sound.audio}  />
