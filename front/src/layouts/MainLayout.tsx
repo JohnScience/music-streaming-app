@@ -3,8 +3,8 @@ import { Outlet } from 'react-router-dom'
 
 import MainMenu from '../components/shared/MainMenu'
 import RightMenu from '../components/shared/RightMenu'
-import Player from '../components/pages/home/Player'
 import styled from 'styled-components'
+import PlayerModule from '../components/Player/Player'
 
 const MainLayout: React.FC = () => {
   return (
@@ -16,7 +16,7 @@ const MainLayout: React.FC = () => {
         </MainContent>
         <RightMenu />
       </Wrapper>
-      <Player />
+      <PlayerModule />
     </ContentContainer>
   )
 }

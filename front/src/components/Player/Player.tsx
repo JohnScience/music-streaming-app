@@ -98,7 +98,7 @@ const InputSliderProgress = styled.input`
 const InputSliderVolume =  styled.input`
 
 -webkit-appearance: none;
-width: 100%;
+width: 95%;
 height: 6px;
 background: linear-gradient(to right, #9c088e 0%, #9c088e ${({ value }) => value }%, #bab6b6 ${({ value}) =>value}%,  #bab6b6 100%);
 outline: none;
@@ -106,6 +106,8 @@ opacity: 0.7;
 -webkit-transition: .2s;
 transition: opacity .2s;
 border-radius: 10px;
+margin-top: 0.5rem;
+
 
 
 &::-webkit-slider-thumb {
@@ -163,7 +165,7 @@ const sound:PlayerDescription = {
         time: 210,
         artist: 'Glass Animals'
 }
- const  Player1: React.FC<PlayerProps> = ()  => {
+ const  PlayerModule: React.FC<PlayerProps> = ()  => {
   const [play, setPlay] = useState(false)
   const soundRef: React.RefObject<HTMLAudioElement> = useRef<HTMLAudioElement>(null)
   const MAX = 100
@@ -286,16 +288,12 @@ const sound:PlayerDescription = {
         onChange={handleSeek}
         step={0.1}
         value={progress}
-        
-        
       />
-    
         </div>
         </FlexBox>
         <FlexBox>
-        <ButtonVolume 
-        >
-           <img src={Volume} width="30" height="30"/>
+        <ButtonVolume>
+           <img src={Volume} width="25" height="25"/>
         </ButtonVolume>
            <InputSliderVolume
               type="range"
@@ -313,4 +311,4 @@ const sound:PlayerDescription = {
  )
  }
 
- export default Player1
+ export default PlayerModule
