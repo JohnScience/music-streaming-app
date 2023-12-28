@@ -25,6 +25,7 @@ const PlayerComponent = styled.li`
 display: flex;   
 background-color: #1a1918;
 width: 95%;
+height: 7rem;
 font-weight: bold;
 font-size: 1.1rem ;
 color: ${({$invalid})=> $invalid ? `#9c088e` : `#bab6b6`}; 
@@ -40,7 +41,7 @@ const Image = styled.div`
 img{
     margin:1rem;
 border-radius: 60%;
-      height: 6rem;
+      height: 5rem;
     box-shadow: 0 0 2px 2px #9c088e;
   }
 `
@@ -60,7 +61,7 @@ width: 20px;
 const InputSliderProgress = styled.input`
 
   -webkit-appearance: none;
-  width: 500px;
+  width: 31.25rem;
   height: 6px;
   background: linear-gradient(to right, #9c088e 0%, #9c088e ${({ value }) => value/2 }%, #bab6b6 ${({ value}) =>value/2}%,  #bab6b6 100%);
   outline: none;
@@ -71,23 +72,8 @@ const InputSliderProgress = styled.input`
 
 
 &::-webkit-slider-thumb {
-  /* Стилизация переключателя */
   -webkit-appearance: none;
   appearance: none;
-  width: 15px;
-  height: 15px;
-  background: purple;
-  cursor: pointer;
-  border-radius: 50%;
-}
-
-&::-webkit-slider-thumb:hover {
-  /* При наведение курсора на переключатель */
-  background: #800080;
-}
-
-&::-moz-range-thumb {
-  /* Стилизация переключателя для Firefox */
   width: 15px;
   height: 15px;
   background: purple;
@@ -111,23 +97,8 @@ margin-top: 0.5rem;
 
 
 &::-webkit-slider-thumb {
-/* Стилизация переключателя */
 -webkit-appearance: none;
 appearance: none;
-width: 15px;
-height: 15px;
-background: purple;
-cursor: pointer;
-border-radius: 50%;
-}
-
-&::-webkit-slider-thumb:hover {
-/* При наведение курсора на переключатель */
-background: #800080;
-}
-
-&::-moz-range-thumb {
-/* Стилизация переключателя для Firefox */
 width: 15px;
 height: 15px;
 background: purple;
@@ -155,6 +126,7 @@ border-radius: 50%;
        image:  string;
        handleVolume: ()=> void ; 
     
+    
      } 
 
 const sound:PlayerDescription = {
@@ -165,7 +137,7 @@ const sound:PlayerDescription = {
         time: 210,
         artist: 'Glass Animals'
 }
- const  PlayerModule: React.FC<PlayerProps> = ()  => {
+ const  Player: React.FC<PlayerProps> = ()  => {
   const [play, setPlay] = useState(false)
   const soundRef: React.RefObject<HTMLAudioElement> = useRef<HTMLAudioElement>(null)
   const MAX = 100
@@ -311,4 +283,4 @@ const sound:PlayerDescription = {
  )
  }
 
- export default PlayerModule
+ export default Player
