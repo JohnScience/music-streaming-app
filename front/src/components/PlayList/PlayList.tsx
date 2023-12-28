@@ -1,13 +1,18 @@
-import { useState } from "react";
+import { useEffect, useState } from "react";
 import Image1 from "./assets/1.jpg"
 import Image2 from  "./assets/2.jpg"
 import Image3 from  "./assets/3.jpg"
 import React from "react";
+import gala from "./assets/Melanie Martinez - Cake.mp3";
+import sound from "./assets/Lesa FS - Между нами.mp3"
 import Track from "./Track";
 import {styled} from "styled-components";
+import axios from "axios"
+import Player1 from "./Player";
  
-
+const src = "https://reqres.in/api/users?page=1"
 interface TrackDescription {
+  audio: any;
   id: number;
   image:  string; 
   title: string;
@@ -17,6 +22,7 @@ interface TrackDescription {
 }
 const  musicList: TrackDescription[] = [
     {
+      audio: gala,
       id: 1,
       image: Image1,
       title: "Easy on Me",
@@ -25,6 +31,7 @@ const  musicList: TrackDescription[] = [
         time: 250
     },
     {
+      audio: sound,
       id:2,
       image: Image2,
       title: 'Heat Waves',
@@ -33,6 +40,7 @@ const  musicList: TrackDescription[] = [
       time: 210
     },
     {
+      audio: gala,
       id:3,
       image: Image3,
       title: 'Break My',
@@ -41,6 +49,7 @@ const  musicList: TrackDescription[] = [
       time: 260
     },
     {
+      audio: sound,
       id: 4,
       image: Image1,
       title: "Easy on Me",
@@ -49,6 +58,7 @@ const  musicList: TrackDescription[] = [
         time: 250
     },
     {
+      audio: gala,
       id:5,
       image: Image2,
       title: 'Heat Waves',
@@ -57,6 +67,7 @@ const  musicList: TrackDescription[] = [
       time: 210
     },
     {
+      audio: sound,
       id:6,
       image: Image3,
       title: 'Break My',
@@ -65,6 +76,7 @@ const  musicList: TrackDescription[] = [
       time: 260
     },
     {
+      audio: gala,
       id:7,
       image: Image3,
       title: 'Break My',
@@ -103,6 +115,16 @@ width: 100%;
 
   
    const PlayList = () => {
+    const [articles, setArticles] = useState([])
+    useEffect(() => {
+      axios
+         .get(src)
+         .then(data =>{
+            console.log(data.data.data)
+         })
+    }, [])
+
+
         const [isPlaying, setIsPlaying] = useState(false)
         const[activeItem, setActiveItem] = useState(null)
         const handlePlay=(index: number | null) =>{
@@ -119,10 +141,12 @@ width: 100%;
           
 
         return(
+          <>
           <CustomScrollbar>
             <Ul>
             {musicList.map((item)=>(
               <Track 
+              key={item.title} 
               id={item.id}
               artist={item.artist}
               time={item.time}
@@ -133,10 +157,11 @@ width: 100%;
               activeItem={activeItem}
               isPlaying={isPlaying}
               />
-             
             ))}
-            </Ul>
+            </Ul> 
+           
           </CustomScrollbar>
+          </>
         )
     }
 
