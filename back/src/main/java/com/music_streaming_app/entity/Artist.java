@@ -1,21 +1,23 @@
 package com.music_streaming_app.entity;
 
 import jakarta.persistence.*;
-import lombok.Getter;
+import lombok.*;
 import org.hibernate.annotations.CreationTimestamp;
 
 import java.time.LocalDateTime;
 
+@Data
 @Entity
-@Getter
-//@ToString   // for debug only
+@Builder
+@AllArgsConstructor
+@NoArgsConstructor
 @Table(name = "artists")
 public class Artist {
 
     @Id
     @Column(name = "id")
     @GeneratedValue(strategy = GenerationType.SEQUENCE)
-    private long id;
+    private Long id;
 
     @Column(name = "name", nullable = false)
     private String name;

@@ -15,8 +15,8 @@ import java.time.LocalDateTime;
 @Builder
 @AllArgsConstructor
 @NoArgsConstructor
-@Table(name = "audio_recordings")
-public class AudioRecording {
+@Table(name = "Tracks")
+public class Track {
 
     @Id
     @Column(name = "id")
@@ -26,10 +26,6 @@ public class AudioRecording {
     @Column(name = "title", nullable = false)
     private String title;
 
-    @ManyToOne
-    @JoinColumn(name = "artist_id")
-    private Artist artist;
-
     @Column(name = "description")
     private String description;
 
@@ -37,7 +33,7 @@ public class AudioRecording {
     private String sourceUrl;
 
     @Column(name = "duration_secs", nullable = false)
-    private int durationSecs;
+    private Integer durationSecs;
 
     @CreationTimestamp
     @Column(name = "created_at", nullable = false)
@@ -48,6 +44,14 @@ public class AudioRecording {
     private Blob audioBlob;
 
     @Lob
-    @Column(name = "thumbnail")
-    private Blob thumbnail;
+    @Column(name = "cover")
+    private Blob cover;
+
+    @ManyToOne
+    @JoinColumn(name = "artist_id")
+    private Artist artist;
+
+    @ManyToOne
+    @JoinColumn(name = "genre_id")
+    private Genre genre;
 }
