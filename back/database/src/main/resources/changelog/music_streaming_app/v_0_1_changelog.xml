@@ -1,0 +1,156 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<databaseChangeLog
+        xmlns="http://www.liquibase.org/xml/ns/dbchangelog"
+        xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
+        xmlns:ext="http://www.liquibase.org/xml/ns/dbchangelog-ext"
+        xmlns:pro="http://www.liquibase.org/xml/ns/pro"
+        xsi:schemaLocation="http://www.liquibase.org/xml/ns/dbchangelog
+        http://www.liquibase.org/xml/ns/dbchangelog/dbchangelog-latest.xsd
+        http://www.liquibase.org/xml/ns/dbchangelog-ext http://www.liquibase.org/xml/ns/dbchangelog/dbchangelog-ext.xsd
+        http://www.liquibase.org/xml/ns/pro http://www.liquibase.org/xml/ns/pro/liquibase-pro-latest.xsd">
+
+    <changeSet id="v_0_1_create_sequence_for_artist_table" author="is.sidorov">
+        <createSequence sequenceName="artist_sequence"
+                        startValue="1000"/>
+    </changeSet>
+
+    <changeSet id="v_0_1_create_artist_table" author="is.sidorov">
+        <createTable tableName="artist">
+            <column name="id" type="number" defaultValueSequenceNext="artist_sequence">
+                <constraints primaryKey="true"/>
+            </column>
+            <column name="name" type="varchar(50)">
+                <constraints nullable="false"/>
+            </column>
+            <column name="description" type="varchar(200)"/>
+            <column name="since" type="date"/>
+        </createTable>
+    </changeSet>
+
+    <changeSet id="v_0_1_create_sequence_for_genre_table" author="is.sidorov">
+        <createSequence sequenceName="genre_sequence"
+                        startValue="1000"/>
+    </changeSet>
+
+    <changeSet id="v_0_1_create_genre_table" author="is.sidorov">
+        <createTable tableName="genre">
+            <column name="id" type="number" defaultValueSequenceNext="genre_sequence">
+                <constraints primaryKey="true"/>
+            </column>
+            <column name="name" type="varchar(50)">
+                <constraints nullable="false"/>
+            </column>
+        </createTable>
+    </changeSet>
+
+    <changeSet id="v_0_1_create_sequence_for_tag_table" author="is.sidorov">
+        <createSequence sequenceName="tag_sequence"
+                        startValue="1000"/>
+    </changeSet>
+
+    <changeSet id="v_0_1_create_tag_table" author="is.sidorov">
+        <createTable tableName="tag">
+            <column name="id" type="number" defaultValueSequenceNext="tag_sequence">
+                <constraints primaryKey="true"/>
+            </column>
+            <column name="value" type="varchar(50)">
+                <constraints nullable="false"/>
+            </column>
+        </createTable>
+    </changeSet>
+
+    <changeSet id="v_0_1_create_sequence_for_track_table" author="is.sidorov">
+        <createSequence sequenceName="track_sequence"
+                        startValue="1000"/>
+    </changeSet>
+
+    <changeSet id="v_0_1_create_track_table" author="is.sidorov">
+        <createTable tableName="track">
+            <column name="id" type="number" defaultValueSequenceNext="track_sequence">
+                <constraints primaryKey="true"/>
+            </column>
+            <column name="title" type="varchar(50)">
+                <constraints nullable="false"/>
+            </column>
+            <column name="source_url" type="varchar(120)">
+                <constraints nullable="false"/>
+            </column>
+            <column name="created" type="date"/>
+            <column name="genre" type="number">
+                <constraints referencedTableName="genre" references="genre(id)" foreignKeyName="track_genre_id"/>
+            </column>
+            <column name="duration" type="number(10, 2)">
+                <constraints nullable="false"/>
+            </column>
+            <column name="thumbnail" type="varchar(120)"/>
+            <column name="description" type="varchar(50)"/>
+            <column name="artist" type="number">
+                <constraints referencedTableName="artist" references="artist(id)" foreignKeyName="track_artist_id"/>
+            </column>
+            <column name="tags" type="jsonb"/>
+        </createTable>
+    </changeSet>
+
+    <changeSet id="v_0_1_create_sequence_for_album_table" author="is.sidorov">
+        <createSequence sequenceName="album_sequence"
+                        startValue="1000"/>
+    </changeSet>
+
+    <changeSet id="v_0_1_create_album_table" author="is.sidorov">
+        <createTable tableName="album">
+            <column name="id" type="number" defaultValueSequenceNext="album_sequence">
+                <constraints primaryKey="true"/>
+            </column>
+            <column name="name" type="varchar(50)">
+                <constraints nullable="false"/>
+            </column>
+            <column name="release" type="date"/>
+            <column name="artist" type="number">
+                <constraints referencedTableName="artist" references="artist(id)" foreignKeyName="album_artist_id"/>
+            </column>
+            <column name="tracks" type="jsonb"/>
+            <column name="cover" type="varchar(120)"/>
+            <column name="tags" type="jsonb"/>
+        </createTable>
+    </changeSet>
+
+    <changeSet id="v_0_1_create_sequence_for_playlist_table" author="is.sidorov">
+        <createSequence sequenceName="playlist_sequence"
+                        startValue="1000"/>
+    </changeSet>
+
+    <changeSet id="v_0_1_create_playlist_table" author="is.sidorov">
+        <createTable tableName="playlist">
+            <column name="id" type="number" defaultValueSequenceNext="playlist_sequence">
+                <constraints primaryKey="true"/>
+            </column>
+            <column name="name" type="varchar(50)">
+                <constraints nullable="false"/>
+            </column>
+            <column name="description" type="varchar(50)"/>
+            <column name="tracks" type="jsonb"/>
+            <column name="cover" type="varchar(120)"/>
+            <column name="tags" type="jsonb"/>
+        </createTable>
+    </changeSet>
+
+    <changeSet id="v_0_1_create_sequence_for_playlist_group_table" author="is.sidorov">
+        <createSequence sequenceName="playlist_group_sequence"
+                        startValue="1000"/>
+    </changeSet>
+
+    <changeSet id="v_0_1_create_playlist_group_table" author="is.sidorov">
+        <createTable tableName="playlist_group">
+            <column name="id" type="number" defaultValueSequenceNext="playlist_group_sequence">
+                <constraints primaryKey="true"/>
+            </column>
+            <column name="name" type="varchar(50)">
+                <constraints nullable="false"/>
+            </column>
+            <column name="description" type="varchar(50)"/>
+            <column name="playlists" type="jsonb"/>
+            <column name="cover" type="varchar(120)"/>
+            <column name="tags" type="jsonb"/>
+        </createTable>
+    </changeSet>
+</databaseChangeLog>
