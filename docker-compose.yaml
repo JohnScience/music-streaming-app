@@ -13,14 +13,27 @@ services:
       POSTGRES_DB: audio_service_db
     ports:
       - "5433:5432"
-
     healthcheck:
       test: ["CMD-SHELL", "pg_isready -U user -d audio_service_db"]
       interval: 5s
       timeout: 5s
       retries: 5
-  back:
-    container_name: back
+
+  liquibase:
+    container_name: liquibase
+    image: liquibase/liquibase:4.19.1
+    depends_on:
+      postgres:
+        condition: service_healthy
+    volumes:
+      - ./back/database/src/main/resources/:/resources
+    environment:
+      LIQUIBASE_DEFAULTS_FILE: /resources/liquibase.properties
+      LIQUIBASE_SEARCH_PATH: /resources
+    command: liquibase --url=jdbc:postgresql://postgres:5432/audio_service_db?currentSchema=public update
+
+  music_streaming_app:
+    container_name: music_streaming_app
     build: ./back
     ports:
       - "8080:8080"
