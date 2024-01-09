@@ -19,4 +19,16 @@ public class TrackDao {
     public List<Track> getAll(){
         return trackDbMapper.selectAll();
     }
+
+    public Track getById(Long id){
+        return trackDbMapper.selectById(id);
+    }
+
+    public void update(Track track){
+        trackDbMapper.update(track);
+    }
+
+    public void delete(Long id){
+        trackDbMapper.delete(id);
+    }
 }

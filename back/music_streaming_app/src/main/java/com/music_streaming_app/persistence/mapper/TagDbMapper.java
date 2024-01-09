@@ -19,6 +19,7 @@ public interface TagDbMapper {
     List<Tag> selectAll();
 
     //language=sql
+    @ResultMap("tag")
     @Select("select tag.id, tag.value from tag where id=#{id}")
     Tag selectById(@Param("id") Long id);
 

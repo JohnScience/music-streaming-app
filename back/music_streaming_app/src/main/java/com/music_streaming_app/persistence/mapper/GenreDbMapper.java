@@ -11,7 +11,7 @@ public interface GenreDbMapper {
     Long insert(@Param("value") String name);
 
     //language=sql
-    @Results(id = "tag", value = {
+    @Results(id = "genre", value = {
             @Result(property = "id", column = "id"),
             @Result(property = "name", column = "name"),
     })
@@ -19,6 +19,7 @@ public interface GenreDbMapper {
     List<Genre> selectAll();
 
     //language=sql
+    @ResultMap("genre")
     @Select("select genre.id, genre.name from genre where id=#{id}")
     Genre selectById(@Param("id") Long id);
 

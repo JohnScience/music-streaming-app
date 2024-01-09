@@ -18,4 +18,16 @@ public class TrackService {
     public List<Track> getAll(){
         return trackDao.getAll();
     }
+
+    public Track getById(Long id){
+        return trackDao.getById(id);
+    }
+
+    public void update(Track track){
+        trackDao.update(track);
+    }
+
+    public void delete(Long id){
+        trackDao.delete(id);
+    }
 }

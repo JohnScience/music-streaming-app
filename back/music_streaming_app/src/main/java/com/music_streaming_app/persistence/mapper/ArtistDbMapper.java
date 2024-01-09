@@ -24,6 +24,7 @@ public interface ArtistDbMapper {
     List<Artist> selectAll();
 
     //language=sql
+    @ResultMap("artist")
     @Select("select artist.id, artist.name, artist.description, artist.since " +
             "from artist " +
             "where artist.id=#{id}")
@@ -32,8 +33,8 @@ public interface ArtistDbMapper {
     //language=sql
     @Update("update artist set (" +
             " artist.name = #{artist.name}," +
-            " artist.description = #{artist.description}," +
-            " artist.since=#{artist.since}" +
+            " description = #{artist.description}," +
+            " since=#{artist.since}" +
             ") where artist.id = #{artist.id}")
     void update(@Param("artist") Artist artist);
 

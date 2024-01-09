@@ -21,4 +21,19 @@ public class TrackController {
     public List<Track> getAll(){
         return trackService.getAll();
     }
+
+    @GetMapping("/{id}")
+    public Track getById(@PathVariable Long id){
+        return trackService.getById(id);
+    }
+
+    @PutMapping
+    public void update(@RequestBody Track track){
+        trackService.update(track);
+    }
+
+    @DeleteMapping("/{id}")
+    public void delete(@PathVariable Long id){
+        trackService.delete(id);
+    }
 }
