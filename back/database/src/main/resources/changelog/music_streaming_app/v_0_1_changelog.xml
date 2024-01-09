@@ -72,9 +72,7 @@
             <column name="title" type="varchar(50)">
                 <constraints nullable="false"/>
             </column>
-            <column name="source_url" type="varchar(120)">
-                <constraints nullable="false"/>
-            </column>
+            <column name="source_url" type="varchar(120)"/>
             <column name="created" type="date"/>
             <column name="genre" type="number">
                 <constraints referencedTableName="genre" references="genre(id)" foreignKeyName="track_genre_id"/>
