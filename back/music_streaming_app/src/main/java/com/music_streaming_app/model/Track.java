@@ -19,6 +19,6 @@ public class Track {
     private Double duration;
     private String thumbnail;
     private String description;
-    private Artist artist;
+    private String artist;
     private Set<String> tags;
 }

@@ -25,6 +25,8 @@
         <java.version>21</java.version>
         <springdoc-openapi-starter-webmvc-ui.version>2.2.0</springdoc-openapi-starter-webmvc-ui.version>
         <liquibase-maven-plugin.version>4.25.1</liquibase-maven-plugin.version>
+        <mybatis.version>3.5.15</mybatis.version>
+        <mybatis-spring.version>3.0.3</mybatis-spring.version>
     </properties>
 
     <dependencyManagement>
@@ -38,6 +40,17 @@
                 <groupId>org.liquibase</groupId>
                 <artifactId>liquibase-maven-plugin</artifactId>
                 <version>${liquibase-maven-plugin.version}</version>
+            </dependency>
+            <dependency>
+                <groupId>org.mybatis</groupId>
+                <artifactId>mybatis</artifactId>
+                <version>${mybatis.version}</version>
+            </dependency>
+
+            <dependency>
+                <groupId>org.mybatis</groupId>
+                <artifactId>mybatis-spring</artifactId>
+                <version>${mybatis-spring.version}</version>
             </dependency>
         </dependencies>
     </dependencyManagement>

@@ -10,7 +10,7 @@ RUN mvn clean package -DskipTests
 FROM amazoncorretto:21-al2-full as final
 WORKDIR /app
 COPY --from=builder /app/music_streaming_app/target/music_streaming_app-1.0-SNAPSHOT.jar back.jar
-CMD ["java", "-jar", "back.jar"]
+CMD ["java", "-agentlib:jdwp=transport=dt_socket,server=y,suspend=n,address=0.0.0.0:5005", "-jar", "back.jar"]
 
 
 
