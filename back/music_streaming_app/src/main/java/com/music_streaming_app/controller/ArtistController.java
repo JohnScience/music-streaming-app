@@ -13,7 +13,7 @@ import java.util.List;
 public class ArtistController {
     private final ArtistService artistService;
 
-    @PostMapping
+    @PostMapping("/all")
     public Long createArtist(@RequestBody Artist artist) {
         return artistService.createArtist(artist);
     }
