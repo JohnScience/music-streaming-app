@@ -12,6 +12,7 @@
     <modules>
         <module>database</module>
         <module>music_streaming_app</module>
+        <module>security</module>
     </modules>
 
     <parent>
@@ -46,7 +47,6 @@
                 <artifactId>mybatis</artifactId>
                 <version>${mybatis.version}</version>
             </dependency>
-
             <dependency>
                 <groupId>org.mybatis</groupId>
                 <artifactId>mybatis-spring</artifactId>

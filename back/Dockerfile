@@ -3,6 +3,10 @@ WORKDIR /app
 COPY pom.xml .
 COPY music_streaming_app/pom.xml ./music_streaming_app/
 COPY music_streaming_app/src ./music_streaming_app/src/
+
+COPY security/pom.xml ./security/
+COPY security/src ./security/src/
+
 COPY database/pom.xml ./database/
 COPY database/src ./database/src/
 RUN mvn clean package -DskipTests

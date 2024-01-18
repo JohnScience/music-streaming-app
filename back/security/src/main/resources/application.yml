@@ -1,0 +1,25 @@
+
+spring:
+  datasource:
+    url: jdbc:postgresql://localhost:5432/audio_service_db
+    username: postgres
+    password: postgres
+    driver-class-name: org.postgresql.Driver
+  servlet:
+    multipart:
+      max-file-size: 500MB
+      max-request-size: 500MB
+  jpa:
+    hibernate:
+      ddl-auto: create-drop
+    properties:
+      hibernate:
+        format_sql: true
+    show-sql: true
+    database: postgresql
+    database-platform: org.hibernate.dialect.PostgreSQLDialect
+
+JWT_SECRET_KEY: JLNlXjTd/d/uAsUndtQ/JYIqZ/ncp4TR0eHJRFWQ3LrCes11ZwRK9g7mhXCAMKDZINzXWfaVZ7tMj6qjTtCpNSvyNk1rTmtfXJEM5qu7sLY=
+JWT_EXPIRATION_Ms: 900000
+server:
+  port: 8181
